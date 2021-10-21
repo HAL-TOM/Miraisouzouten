@@ -1,5 +1,9 @@
 sceneSetups:
+<<<<<<< HEAD
 - path: Assets/Scenes/Earth.unity
+=======
+- path: Assets/Scenes/Sun_TestScene.unity
+>>>>>>> 7cbee145c16ab78a830d90466b63242fbe35220b
   isLoaded: 1
   isActive: 1
   isSubScene: 0
