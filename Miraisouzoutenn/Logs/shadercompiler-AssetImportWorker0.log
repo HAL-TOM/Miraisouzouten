@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 Base path: 'C:/Users/szkai/Desktop/2020.3.20f1/Editor/Data', plugins path 'C:/Users/szkai/Desktop/2020.3.20f1/Editor/Data/PlaybackEngines'
+=======
+Base path: 'C:/Program Files/Unity/2020.3.20f1/Editor/Data', plugins path 'C:/Program Files/Unity/2020.3.20f1/Editor/Data/PlaybackEngines'
+>>>>>>> 1ed8ce8cbdf9e69e9c887bb7fdac37883ba27773
 Cmd: initializeCompiler
 
 Unhandled exception: Protocol error - failed to read magic number (error -2147483644, transferred 0/4)

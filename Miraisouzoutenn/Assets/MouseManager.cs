@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class MouseManager : MonoBehaviour
 {
-    ClickObj nowClick=null;
+    [SerializeField] ClickObj nowClick=null;
+    [SerializeField] float rotSpeed;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,6 +17,13 @@ public class MouseManager : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
             ClickCheck();//ÉNÉäÉbÉNèàóù
+
+        if(Input.GetKeyDown(KeyCode.A))
+            LeftRotate();
+        if (Input.GetKeyDown(KeyCode.D))
+            RightRotate();
+        if (Input.GetKeyDown(KeyCode.R))
+            ResetRotate();
     }
     public ClickObj GetClickObj()
     {
@@ -59,6 +67,28 @@ public class MouseManager : MonoBehaviour
                 nowClick.OutAction();//ó£ÇµÇΩ
             }
             nowClick = null;
+        }
+    }
+
+    private void LeftRotate()
+    {
+        if(nowClick!=null)
+        {
+            nowClick.transform.Rotate(new Vector3(0, 0, rotSpeed));
+        }
+    }
+    private void RightRotate()
+    {
+        if (nowClick != null)
+        {
+            nowClick.transform.Rotate(new Vector3(0, 0, -rotSpeed));
+        }
+    }
+    private void ResetRotate()
+    {
+        if (nowClick != null)
+        {
+            nowClick.transform.Rotate(new Vector3(0, 0, -rotSpeed));
         }
     }
 }
