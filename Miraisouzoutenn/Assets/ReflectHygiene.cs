@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class ReflectHygiene : MonoBehaviour
 {
-    
+    /*
     class InLight
     {
 
     };
-    [SerializeField] private List<InLight> inLights;
-    
+    public List<InLight> inLights;
+    */
 
     // Start is called before the first frame update
     void Start()
@@ -21,13 +21,23 @@ public class ReflectHygiene : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        InitVec();
+        UpdateRef();
     }
-
-    public void HitLight()
+    private void InitVec()
     {
 
     }
-    public void OutLight()
+
+    private void UpdateRef()
+    {
+
+    }
+    public void AddLight()
+    {
+
+    }
+    public void DestoroyLight()
     {
 
     }
