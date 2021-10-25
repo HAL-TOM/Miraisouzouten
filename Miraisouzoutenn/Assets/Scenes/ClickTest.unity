@@ -570,10 +570,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7274782763782252447, guid: 4918f527beeec51439147e3d1ffb9a45, type: 3}
-      propertyPath: spinSpeed
-      value: 150
-      objectReference: {fileID: 0}
     - target: {fileID: 8253039377041465159, guid: 4918f527beeec51439147e3d1ffb9a45, type: 3}
       propertyPath: m_Name
       value: MouseManager
