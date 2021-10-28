@@ -4,61 +4,74 @@ using UnityEngine;
 
 public class MouseManager : MonoBehaviour
 {
-    ClickObj nowClick=null;
+    public ClickObj clickObj;
+    public float spinSpeed;
     // Start is called before the first frame update
     void Start()
     {
-        
+        clickObj = null;   
     }
 
     // Update is called once per frame
     void Update()
     {
+        ClickCheeck();
+        if(clickObj!=null)
+        {
+
+            if (Input.GetKey(KeyCode.A))
+            {
+                RotateLeft();
+            }
+            if (Input.GetKey(KeyCode.D))
+            {
+                RotateRight();
+            }
+            if (Input.GetKey(KeyCode.R))
+            {
+                RotateReset();
+            }
+        }
+    }
+    void ClickCheeck()
+    {
         if (Input.GetMouseButtonDown(0))
-            ClickCheck();//クリック処理
-    }
-    public ClickObj GetClickObj()
-    {
-        return nowClick;
-    }
-    private void ClickCheck()
-    {
-        Ray ray = new Ray();
-        RaycastHit hit = new RaycastHit();
-        ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-        //マウスクリックした場所からRayを飛ばし、オブジェクトがあればtrue 
-        if (Physics.Raycast(ray.origin, ray.direction, out hit, Mathf.Infinity))
         {
-            if (hit.collider.gameObject.GetComponent<ClickObj>() != null)
+
+            if (clickObj != null)
             {
-                ClickObj onClick = hit.collider.gameObject.GetComponent<ClickObj>();
-                if (nowClick == onClick)
+                clickObj.OutAction();
+            }
+            Ray ray = new Ray();
+            RaycastHit hit = new RaycastHit();
+            ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+            //マウスクリックした場所からRayを飛ばし、オブジェクトがあればtrue 
+            if (Physics.Raycast(ray.origin, ray.direction, out hit, Mathf.Infinity))
+            {
+                ClickObj onClick;
+                if (hit.collider.transform.GetComponent<ClickObj>() != null)
                 {
-                    //既にクリックしているので何もしない
+                    onClick = hit.collider.transform.GetComponent<ClickObj>();
+
+                    onClick.OnAction();
+                    clickObj = onClick;
                 }
-                else
-                {
-                    //新しくクリックした
-                    if (nowClick != null)//クリックしていたオブジェクトがある
-                    {
-                        nowClick.OutAction();//離した
-
-                    }
-                    nowClick = onClick;
-                }
-
-                onClick.OnAction();//クリックした
-
             }
         }
-        else
-        {
-            if (nowClick != null)//クリックしていたオブジェクトがある
-            {
-                nowClick.OutAction();//離した
-            }
-            nowClick = null;
-        }
+    }
+    void RotateRight()
+    {
+        clickObj.transform.Rotate(new Vector3(0, 0, 1), -spinSpeed*Time.deltaTime);
+    }
+    void RotateLeft()
+    {
+        clickObj.transform.Rotate(new Vector3(0, 0, 1), spinSpeed * Time.deltaTime);
+
+    }
+    void RotateReset()
+    {
+
+        clickObj.transform.eulerAngles = new Vector3(0, 0, 0);
     }
 }
