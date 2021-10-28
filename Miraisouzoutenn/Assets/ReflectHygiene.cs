@@ -4,28 +4,29 @@ using UnityEngine;
 
 public class ReflectHygiene : MonoBehaviour
 {
-    
-  
-    [SerializeField]  private List<InLight> inLights;
-    
+
+
+    [SerializeField] private List<InLight> m_inLights;
+
+    [SerializeField] private GameObject m_LightRes;
 
     // Start is called before the first frame update
     void Start()
     {
-        inLights = new List<InLight>();
+        m_inLights = new List<InLight>();
     }
 
     // Update is called once per frame
     void Update()
     {
 
-         UpdateLight();
+        UpdateLight();
     }
     private void UpdateLight()
     {
-        foreach (InLight light in inLights)
+        foreach (InLight light in m_inLights)
         {
-            if(Vector3.Dot(transform.up,light.inLight.m_Direction) < 0)
+            if (Vector3.Dot(transform.up, light.inLight.m_Direction) > 0)//ï\ñ 
             {
                 DestoroyLight(light);
                 continue;
@@ -35,15 +36,24 @@ public class ReflectHygiene : MonoBehaviour
     }
     public void HitLight(SunLight inL)//åıÇ™ìñÇΩÇ¡ÇΩéûÇ…åƒÇŒÇÍÇÈ
     {
-        if(Vector3.Dot(transform.up, inL.m_Direction)>0)
+        foreach (InLight light in m_inLights)
+        {
+            if (light.inLight == inL)
+            {
+                //ä˘Ç…HitÇµÇƒÇ¢ÇÈ
+                return;
+            }
+        }
+
+        if (Vector3.Dot(-transform.up, inL.m_Direction) > 0)
         {
             Debug.Log("HitLight");
-            inLights.Add(new InLight(inL, ReflectLight(inL)));
+            m_inLights.Add(new InLight(inL, ReflectLight(inL)));
         }
     }
     public void OutLight(SunLight outL)//åıÇ™ó£ÇÍÇΩéûÇ…åƒÇŒÇÍÇÈ
     {
-        foreach (InLight light in inLights)
+        foreach (InLight light in m_inLights)
         {
             if (light.inLight == outL)
             {
@@ -56,14 +66,18 @@ public class ReflectHygiene : MonoBehaviour
     private void DestoroyLight(InLight light)
     {
         //light.outL;//è¡Ç¶ÇÈèàóù
-        inLights.Remove(light); // óvëfÇÃçÌèú
-    }
+        light.outLight.DestoroyLight();
+        m_inLights.Remove(light); // óvëfÇÃçÌèú
 
+    } 
     private SunLight ReflectLight(SunLight inL)
     {
-        SunLight retL = new SunLight();
+        GameObject instance = Instantiate(m_LightRes,
+                                                  transform.position,
+                                                  Quaternion.identity)as GameObject;
+        SunLight retL = instance.GetComponent<SunLight>();
         //ê∂ê¨
-        retL.SetAll(gameObject, RefVec(inL.m_Direction), 1.0f, 1.0f);
+        retL.SetAll(gameObject, RefVec(inL.m_Direction), inL.m_OriginLength, inL.m_Value - 1);
         
         return retL;
     }

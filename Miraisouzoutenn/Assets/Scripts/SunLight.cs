@@ -7,7 +7,7 @@ public class SunLight : MonoBehaviour
     const float DEFAULT_SCALE = 0.25f;
 
     public GameObject m_StartObj;
-    GameObject m_EndObj;
+    public GameObject m_EndObj;
     public Vector3 m_Direction;
     public float m_OriginLength;
     float m_Length;
@@ -44,15 +44,14 @@ public class SunLight : MonoBehaviour
     {
         Vector3 distance;
         float distLen = m_OriginLength;
-
+        m_HitFlag = false;
 
         //ライトの方向にオブジェクトがあるかの判定
         Vector3 startPos;
         startPos = m_StartObj.transform.position + (m_StartObj.transform.localScale.x + m_StartObj.transform.localScale.y) / 4 * m_Direction;
         float length;
-        length = m_OriginLength - (m_StartObj.transform.localScale.x + m_StartObj.transform.localScale.y) / 4;
-
-        foreach (RaycastHit hit in Physics.RaycastAll(startPos, m_Direction, length))
+        length = m_Length - (m_StartObj.transform.localScale.x + m_StartObj.transform.localScale.y) / 4;
+       foreach (RaycastHit hit in Physics.RaycastAll(startPos, m_Direction, length))
         {
             m_HitFlag = true;
             //ヒットしたオブジェクトとレイを出したオブジェクトとの距離を算出
@@ -61,23 +60,41 @@ public class SunLight : MonoBehaviour
             //距離が最も近いオブジェクトを調べる
             if (distLen > Vector3.Magnitude(distance))
             {
+                if(!(m_EndObj==null))//現在当たっているオブジェクトがある
+                {
+                    if (!(m_EndObj == hit.collider.gameObject))//当たっているオブジェクトと当たったオブジェクトは違う
+                    {
+                        //m_EndObj.離れたよ関数();
+
+                        if (m_EndObj.GetComponent<ReflectHygiene>() != null)
+                        {
+                            m_EndObj.GetComponent<ReflectHygiene>().OutLight(this);
+                        }
+                        Debug.Log("foreach通知");
+                    }
+                }
+
                 distLen = Vector3.Magnitude(distance);
-                m_EndObj = hit.collider.gameObject;
-                Debug.Log(hit.collider.gameObject.name);
-                Debug.Log(hit.collider.gameObject.transform.position);
             }
+
+            m_EndObj = hit.collider.gameObject;
+            Debug.Log("HitObj:" + hit.collider.gameObject.name);
         }
+        
+        
 
         //ライトの現在の長さを設定　
         if (m_HitFlag)
         {
             m_Length = distLen;
-            /*
             //ヒットしているオブジェクトが衛星なら通知
-            if(m_EndObj.GetType()== typeof(ReflectHygiene))
+            if(m_EndObj.GetComponent< ReflectHygiene >()!= null)
             {
-                m_EndObj.当たってるよ関数();
+
+                m_EndObj.GetComponent<ReflectHygiene>().HitLight(this);
             }
+            
+            /*
             if (m_EndObj.GetType() == typeof(Amamegumi))
             {
                 m_EndObj.当たってるよ関数();
@@ -87,11 +104,34 @@ public class SunLight : MonoBehaviour
         else
         {
             m_Length = m_OriginLength;
+            //EndObjが設定されているが、光が当たっていない時
+            if(!(m_EndObj == null))
+            {
+                //m_EndObj.離れたよ関数();
+                if (m_EndObj.GetComponent<ReflectHygiene>() != null)
+                {
+                    m_EndObj.GetComponent<ReflectHygiene>().OutLight(this);
+                }
+                m_EndObj = null;
+                Debug.Log("false通知");
+            }
         }
 
 
     }
+    public void DestoroyLight()
+    {
+        if (!(m_EndObj == null))
+        {
+            //m_EndObj.離れたよ関数();
+            if (m_EndObj.GetComponent<ReflectHygiene>() != null)
+            {
+                m_EndObj.GetComponent<ReflectHygiene>().OutLight(this);
+            }
 
+        }
+        Destroy(gameObject);
+    }
     //ライトの見た目の変更
     void DispManagement()
     {
