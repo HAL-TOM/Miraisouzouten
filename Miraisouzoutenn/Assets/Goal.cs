@@ -46,7 +46,7 @@ public class Goal : MonoBehaviour
                 return;
             }
         }
-        Debug.Log("HitEnergy");
+
         m_energies.Add(ene);
     }
 

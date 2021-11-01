@@ -5,12 +5,12 @@ using UnityEngine;
 
 public class Amamegumi : MonoBehaviour
 {
-    List<SunLight> m_lights;//光のリスト(光をエネルギーに返還するよう)
-    List<Energy> m_energies;//一個のアマメグミにエネルギーが集まったとき用
-    Energy m_energy;//アマメグミのエネルギー
+    [SerializeField]List<SunLight> m_lights;//光のリスト(光をエネルギーに返還するよう)
+    [SerializeField]List<Energy> m_energies;//一個のアマメグミにエネルギーが集まったとき用
+    [SerializeField] Energy m_energy;//アマメグミのエネルギー
 
-    private float m_totalenergy;//エネルギーの総量
-    GameObject m_energyline;//エネルギーライン用オブジェクト(実験用)
+    [SerializeField]private float m_totalenergy;//エネルギーの総量
+    [SerializeField] GameObject m_energyline;//エネルギーライン用オブジェクト(実験用)
 
     // Start is called before the first frame update
     void Start()
