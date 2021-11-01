@@ -70,6 +70,11 @@ public class SunLight : MonoBehaviour
                         {
                             m_EndObj.GetComponent<ReflectHygiene>().OutLight(this);
                         }
+
+                        if (m_EndObj.GetComponent<Amamegumi>() != null)
+                        {
+                            m_EndObj.GetComponent<Amamegumi>().OutLight(this);
+                        }
                         Debug.Log("foreach’Ê’m");
                     }
                 }
