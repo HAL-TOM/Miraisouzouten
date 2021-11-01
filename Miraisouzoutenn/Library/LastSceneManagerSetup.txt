@@ -1,13 +1,5 @@
 sceneSetups:
-<<<<<<< HEAD
-<<<<<<< HEAD
-- path: Assets/Scenes/EarthTest.unity
-=======
-- path: Assets/Scenes/ClickTest.unity
->>>>>>> 1ed8ce8cbdf9e69e9c887bb7fdac37883ba27773
-=======
-- path: Assets/Scenes/ClickTest.unity
->>>>>>> 1ed8ce8cbdf9e69e9c887bb7fdac37883ba27773
+- path: Assets/Scenes/Cleare.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
