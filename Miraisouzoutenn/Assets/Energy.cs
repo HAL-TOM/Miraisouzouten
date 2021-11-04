@@ -95,6 +95,12 @@ public class Energy : MonoBehaviour
             }
 
             m_endobject = null;
+
+            m_length = m_orijinlength;
+            Vector3 position;
+            position = m_startobject.transform.position + m_direction * m_length / 2;
+            transform.position = position;
+            this.gameObject.transform.localScale = new Vector3(0.2f, m_length, 0.2f);
         }
 
 
