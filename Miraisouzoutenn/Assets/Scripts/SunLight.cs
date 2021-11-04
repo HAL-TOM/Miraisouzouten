@@ -70,6 +70,11 @@ public class SunLight : MonoBehaviour
                         {
                             m_EndObj.GetComponent<ReflectHygiene>().OutLight(this);
                         }
+
+                        if (m_EndObj.GetComponent<Amamegumi>() != null)
+                        {
+                            m_EndObj.GetComponent<Amamegumi>().OutLight(this);
+                        }
                         Debug.Log("foreach’Ê’m");
                     }
                 }
@@ -93,7 +98,12 @@ public class SunLight : MonoBehaviour
 
                 m_EndObj.GetComponent<ReflectHygiene>().HitLight(this);
             }
-            
+            if (m_EndObj.GetComponent<Amamegumi>() != null)
+            {
+
+                m_EndObj.GetComponent<Amamegumi>().HitLight(this);
+            }
+
             /*
             if (m_EndObj.GetType() == typeof(Amamegumi))
             {
@@ -112,6 +122,12 @@ public class SunLight : MonoBehaviour
                 {
                     m_EndObj.GetComponent<ReflectHygiene>().OutLight(this);
                 }
+
+                if (m_EndObj.GetComponent<Amamegumi>() != null)
+                {
+                    m_EndObj.GetComponent<Amamegumi>().OutLight(this);
+                }
+
                 m_EndObj = null;
                 Debug.Log("false’Ê’m");
             }
@@ -128,7 +144,6 @@ public class SunLight : MonoBehaviour
             {
                 m_EndObj.GetComponent<ReflectHygiene>().OutLight(this);
             }
-
         }
         Destroy(gameObject);
     }
@@ -207,6 +222,5 @@ public class SunLight : MonoBehaviour
     {
         return m_Value;
     }
-
 
 }
