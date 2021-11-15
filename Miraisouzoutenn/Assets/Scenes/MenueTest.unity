@@ -260,6 +260,7 @@ GameObject:
   - component: {fileID: 43499787}
   - component: {fileID: 43499786}
   - component: {fileID: 43499788}
+  - component: {fileID: 43499789}
   m_Layer: 5
   m_Name: yatanokagami
   m_TagString: Untagged
@@ -337,6 +338,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Res: {fileID: 3436343094866900693, guid: d2990c13ceb62134e94eeab486713cf1, type: 3}
+--- !u!114 &43499789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 43499784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 2
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 43499788}
+          m_TargetAssemblyTypeName: MenueItem, Assembly-CSharp
+          m_MethodName: Click
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &110519013
 GameObject:
   m_ObjectHideFlags: 0
@@ -1112,6 +1142,7 @@ GameObject:
   - component: {fileID: 567555474}
   - component: {fileID: 567555473}
   - component: {fileID: 567555475}
+  - component: {fileID: 567555476}
   m_Layer: 5
   m_Name: saikuturobo
   m_TagString: Untagged
@@ -1189,6 +1220,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Res: {fileID: 0}
+--- !u!114 &567555476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 567555471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 2
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 567555471}
+          m_TargetAssemblyTypeName: 
+          m_MethodName: 
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: 
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &585329308
 GameObject:
   m_ObjectHideFlags: 0
@@ -2145,6 +2205,7 @@ GameObject:
   - component: {fileID: 1264010543}
   - component: {fileID: 1264010542}
   - component: {fileID: 1264010544}
+  - component: {fileID: 1264010545}
   m_Layer: 5
   m_Name: misairu
   m_TagString: Untagged
@@ -2222,6 +2283,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Res: {fileID: 0}
+--- !u!114 &1264010545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1264010540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 2
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1264010540}
+          m_TargetAssemblyTypeName: MenueItem, Assembly-CSharp
+          m_MethodName: 
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1366443473
 GameObject:
   m_ObjectHideFlags: 0
