@@ -4,8 +4,7 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Debris
-  - MiningRobots
+  - Mouse
   layers:
   - Default
   - TransparentFX

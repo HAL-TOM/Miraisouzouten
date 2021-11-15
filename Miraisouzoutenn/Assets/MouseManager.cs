@@ -4,69 +4,147 @@ using UnityEngine;
 
 public class MouseManager : MonoBehaviour
 {
-    public ClickObj clickObj;
-    public float spinSpeed;
+    static public MouseManager mouseManager;
+    public enum MainState
+    {
+        ClickNon = 0,
+        Drag,
+        OnSetting,
+        StateNum,
+
+    }
+    public MainState mainState;
+
+
+    private ClickObj clickObj;
+
     // Start is called before the first frame update
     void Start()
     {
-        clickObj = null;   
+        clickObj = null;
+        mouseManager = this;
     }
 
     // Update is called once per frame
     void Update()
     {
-        ClickCheeck();
-        if(clickObj!=null)
+        switch(mainState)
         {
+            case MainState.ClickNon:
+                
+                break;
+            case MainState.Drag:
+                DragUpdate();
 
-            if (Input.GetKey(KeyCode.A))
-            {
-                RotateLeft();
-            }
-            if (Input.GetKey(KeyCode.D))
-            {
-                RotateRight();
-            }
-            if (Input.GetKey(KeyCode.R))
-            {
-                RotateReset();
-            }
-        }
-    }
-    void ClickCheeck()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-
-            if (clickObj != null)
-            {
-                clickObj.OutAction();
-            }
-            Ray ray = new Ray();
-            RaycastHit hit = new RaycastHit();
-            ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-            //マウスクリックした場所からRayを飛ばし、オブジェクトがあればtrue 
-            if (Physics.Raycast(ray.origin, ray.direction, out hit, Mathf.Infinity))
-            {
-                ClickObj onClick;
-                if (hit.collider.transform.GetComponent<ClickObj>() != null)
+                if (Input.GetMouseButtonUp(0))
                 {
-                    onClick = hit.collider.transform.GetComponent<ClickObj>();
+                    if (clickObj != null)//menueItemがある
+                    {
+                        Ray ray = new Ray();
+                        ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-                    onClick.OnAction();
-                    clickObj = onClick;
+                        //ヒットしたすべてのオブジェクト情報を取得
+                        foreach (RaycastHit hit in Physics.RaycastAll(ray))
+                        {
+                            if (hit.collider.transform.GetComponent<Mass>() != null)
+                            {
+                                Debug.Log("hitMass");
+                                hit.collider.transform.GetComponent<Mass>().SetObj(clickObj.transform.gameObject);
+                                clickObj.transform.position = hit.collider.transform.position + new Vector3(0.0f, 0.0f,- 0.1f); ;
+
+                                SetState(MainState.OnSetting);
+                                Debug.Log(mainState);
+                                return;
+                            }
+                        }
+                        clickObj.DesObj();
+                        SetState(MainState.ClickNon);
+                        break;
+
+                    }
+                    else
+                    {
+                        clickObj.DesObj();
+                        SetState(MainState.ClickNon);
+                        break;
+
+                    }
                 }
-            }
+                break;
+            case MainState.OnSetting:
+                if (clickObj != null)
+                {
+
+                    if (Input.GetKeyDown(KeyCode.A))
+                    {
+                        RotateLeft();
+                    }
+                    if (Input.GetKeyDown(KeyCode.D))
+                    {
+                        RotateRight();
+                    }
+                    if (Input.GetKeyDown(KeyCode.Space))
+                    {
+
+                        SetState(MainState.ClickNon);
+                    }
+
+                    if (Input.GetKeyDown(KeyCode.G))
+                    {
+                        
+                        SetState(MainState.ClickNon);
+                        
+                        clickObj.DesObj();
+                    }
+                    if (Input.GetKey(KeyCode.R))
+                    {
+                        RotateReset();
+                    }
+                }else
+                {
+
+                    SetState(MainState.ClickNon);
+                }
+
+
+                break;
         }
+
+        
     }
+
+    private void DragUpdate()
+    {
+        //位置をワールド座標からスクリーン座標に変換して、objectPointに格納
+        Vector3 objectPoint
+            = Camera.main.WorldToScreenPoint(clickObj.transform.position);
+
+        //現在位置(マウス位置)を、pointScreenに格納
+        Vector3 pointScreen
+            = new Vector3(Input.mousePosition.x,
+                          Input.mousePosition.y,
+                          objectPoint.z);
+
+        //現在位置を、スクリーン座標からワールド座標に変換して、pointWorldに格納
+        Vector3 pointWorld = Camera.main.ScreenToWorldPoint(pointScreen);
+        pointWorld.z = transform.position.z;
+
+        //位置を、pointWorldにする
+        clickObj.transform.position = pointWorld;
+    }
+
+    public void SetState(MainState state)
+    {
+        mainState = state;
+    }
+
     void RotateRight()
     {
-        clickObj.transform.Rotate(new Vector3(0, 0, 1), -spinSpeed*Time.deltaTime);
+        clickObj.transform.Rotate(new Vector3(0, 0, 1), -45.0f);
     }
     void RotateLeft()
     {
-        clickObj.transform.Rotate(new Vector3(0, 0, 1), spinSpeed * Time.deltaTime);
+        clickObj.transform.Rotate(new Vector3(0, 0, 1), 45.0f);
 
     }
     void RotateReset()
@@ -74,4 +152,5 @@ public class MouseManager : MonoBehaviour
 
         clickObj.transform.eulerAngles = new Vector3(0, 0, 0);
     }
+    public void SetClickObj(ClickObj set) { clickObj = set; }
 }
