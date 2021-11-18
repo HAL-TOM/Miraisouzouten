@@ -6,7 +6,7 @@ public class Mass : MonoBehaviour
 {
     static public MassManager massManager;
     [SerializeField] Material material;
-    [SerializeField] GameObject obj=null;
+    [SerializeField] public GameObject obj=null;
     bool Hit = false;
     // Start is called before the first frame update
     void Start()

@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class ClickObj : MonoBehaviour
 {
-    
+    public MenueID menuID;
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -22,6 +22,8 @@ public class ClickObj : MonoBehaviour
     }
     public void OutAction()
     {
+
+        Destroy(menuID);
         Destroy(this);
     }
     public void DesObj()

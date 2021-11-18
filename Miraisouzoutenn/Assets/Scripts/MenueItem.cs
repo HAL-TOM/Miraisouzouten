@@ -5,11 +5,12 @@ using UnityEngine;
 public class MenueItem : MonoBehaviour
 {
     [SerializeField] private GameObject m_Res;
-    
+    [SerializeField] private MenueID m_menueID;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        m_menueID = GetComponent<MenueID>();
     }
 
     // Update is called once per frame
@@ -43,7 +44,12 @@ public class MenueItem : MonoBehaviour
             transform.position,
             Quaternion.identity) as GameObject;
 
-        instance.AddComponent<ClickObj>();
+        ClickObj clickObj = instance.AddComponent<ClickObj>();
+
+        MenueID menueID = instance.AddComponent<MenueID>();
+        menueID.id = m_menueID.id;
+        clickObj.menuID = menueID;
+
 
         MouseManager.mouseManager.SetClickObj(instance.GetComponent<ClickObj>());
     }

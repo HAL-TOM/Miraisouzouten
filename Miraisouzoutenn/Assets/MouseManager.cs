@@ -48,13 +48,43 @@ public class MouseManager : MonoBehaviour
                         {
                             if (hit.collider.transform.GetComponent<Mass>() != null)
                             {
-                                Debug.Log("hitMass");
-                                hit.collider.transform.GetComponent<Mass>().SetObj(clickObj.transform.gameObject);
-                                clickObj.transform.position = hit.collider.transform.position + new Vector3(0.0f, 0.0f,- 0.1f); ;
+                                Mass mass = hit.collider.transform.GetComponent<Mass>();
+                                if(mass.obj==null)//配置してない
+                                {
 
-                                SetState(MainState.OnSetting);
-                                Debug.Log(mainState);
-                                return;
+
+                                    if (clickObj.menuID.id==MenueID.ID.AMA)//アマメグミをクリックしている
+                                    {
+
+                                        hit.collider.transform.GetComponent<Mass>().SetObj(clickObj.transform.gameObject);
+                                        clickObj.transform.position = hit.collider.transform.position + new Vector3(0.0f, 0.0f, -0.1f); ;
+
+                                        SetState(MainState.OnSetting);
+                                        return;
+                                    }
+
+                                    if (clickObj.menuID.id == MenueID.ID.REF)//反射衛星をクリックしている
+                                    {
+
+                                        hit.collider.transform.GetComponent<Mass>().SetObj(clickObj.transform.gameObject);
+                                        clickObj.transform.position = hit.collider.transform.position + new Vector3(0.0f, 0.0f, -0.1f); ;
+
+                                        SetState(MainState.OnSetting);
+                                        return;
+                                    }
+                                    
+                                }else//配置してある
+                                {
+                                    if (clickObj.menuID.id == MenueID.ID.SAI)//採掘ロボットをクリックしている
+                                    {
+                                        //マスにデプリが配置してある
+                                    }
+                                    if (clickObj.menuID.id == MenueID.ID.RCK)//ミサイルをクリックしている
+                                    {
+                                        //マスにデプリが配置してある
+                                    }
+
+                                }
                             }
                         }
                         clickObj.DesObj();
