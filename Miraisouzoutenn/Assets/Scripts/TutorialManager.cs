@@ -22,13 +22,15 @@ public class TutorialManager : MonoBehaviour
 
     const float CHANGE_AMOUNT = 1840.0f;
     
-
-    const float MOVE_SPEED = 800.0f;
+    //const float MOVE_SPEED = 800.0f;
 
     /// <summary>
     /// メンバ変数
     /// </summary>
     public GameObject m_Fade;
+    public float MOVE_SPEED;
+
+
     FadeManager m_FadeManager;
 
     bool m_ChageScene;
@@ -57,9 +59,12 @@ public class TutorialManager : MonoBehaviour
 
     Sprite[] m_Textures;
 
+    public static int m_ReadALL = -1;
+
     // Start is called before the first frame update
     void Start()
     {
+        //各変数初期化
         m_ChageScene = false;
         m_FadeStarted = false;
         m_MoveFlag = false;
@@ -82,6 +87,8 @@ public class TutorialManager : MonoBehaviour
         m_Textures = Resources.LoadAll<Sprite>("Tutorial");
         m_Sp1Image.sprite = m_Textures[0];
 
+        if (m_ReadALL == -1)
+            m_ReadALL = 0;
     }
 
     // Update is called once per frame
@@ -89,8 +96,14 @@ public class TutorialManager : MonoBehaviour
     {
         SceneManagement();
         LerpingSprite();
+
+        if ((m_TextureIndex + 1) == m_Textures.Length)
+            m_ReadALL = 1;
     }
 
+    /// <summary>
+    /// フェードとシーン遷移管理
+    /// </summary>
     void SceneManagement()
     {
         //シーン切り替えが真なら
@@ -108,6 +121,9 @@ public class TutorialManager : MonoBehaviour
                             break;
 
                         case (int)BUTTON_TYPE.GAME_START:
+                            if (!(m_ReadALL == 1))
+                                return;
+
                             //SceneManager.LoadScene("StageSelect");////////////////////////適切なシーンの名前に変更
                             break;
                     }
@@ -123,6 +139,9 @@ public class TutorialManager : MonoBehaviour
         }
     }
    
+    /// <summary>
+    /// スプライトの移動アニメーション
+    /// </summary>
     void LerpingSprite()
     {
         //次へボタンが押されたら
@@ -230,7 +249,9 @@ public class TutorialManager : MonoBehaviour
 
     }
 
-
+    /// <summary>
+    /// セッター
+    /// </summary>
     public void SetType(int type)
     {
         if(type <= (int)BUTTON_TYPE.GAME_START)
@@ -241,6 +262,14 @@ public class TutorialManager : MonoBehaviour
     public bool GetMoveFlag()
     {
         return m_MoveFlag;
+    }
+
+    /// <summary>
+    /// ゲッター
+    /// </summary>
+    public bool GetChangeScene()
+    {
+        return m_ChageScene;
     }
 
 }

@@ -75,10 +75,21 @@ public class TitleManager : MonoBehaviour
         }
     }
 
+
+    /// <summary>
+    /// セッター
+    /// </summary>
     public void SetChangeScene(int index)
     {
         m_ChageScene = true;
         m_SceneIndex = index;
     }
 
+    /// <summary>
+    /// ゲッター
+    /// </summary>
+    public bool GetChageScene()
+    {
+        return m_ChageScene;
+    }
 }
