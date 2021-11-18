@@ -6,6 +6,8 @@ public class MouseManager : MonoBehaviour
 {
     public ClickObj clickObj;
     public float spinSpeed;
+
+    Quaternion targetRot;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +28,7 @@ public class MouseManager : MonoBehaviour
             if (Input.GetKey(KeyCode.D))
             {
                 RotateRight();
+                //RotateRight45();
             }
             if (Input.GetKey(KeyCode.R))
             {
@@ -73,5 +76,16 @@ public class MouseManager : MonoBehaviour
     {
 
         clickObj.transform.eulerAngles = new Vector3(0, 0, 0);
+    }
+
+    void RotateRight45()
+    {
+        targetRot = Quaternion.AngleAxis(45.0f, Vector3.forward);
+        clickObj.transform.localRotation = Quaternion.Lerp(clickObj.transform.rotation, targetRot, spinSpeed * Time.deltaTime);
+    }
+
+    void RotateLeft45()
+    {
+
     }
 }
