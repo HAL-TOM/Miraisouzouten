@@ -4,19 +4,27 @@ using UnityEngine;
 
 public class MiningRobots : MonoBehaviour
 {
-    GameObject[] DebrisObject;
-    public Vector3 m_Position;              //初期位置保存用
-    public int Resource = 0;                //資源
-    public bool GetResourceFlag = false;    //資源獲得フラグ
+    [SerializeField] private List<SunLight> m_Lights;
+    GameObject[] DebrisObject; //代入用のゲームオブジェクト配列を用意
+
+    public int m_Resource = 0;              //資源
+    public bool m_bGetResource = false;    //資源獲得フラグ
+    public bool m_bEnergyHit = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        //DebrisObject = GameObject.FindGameObjectsWithTag("Debris");     //Debrisタグの検索
+        DebrisObject = GameObject.FindGameObjectsWithTag("Debris");     //Debrisタグの検索
 
-        m_Position = this.transform.position;
-        Resource = 0;
-        GetResourceFlag = false;
+        for (int i = 0; i < DebrisObject.Length; i++)
+        {
+            Debug.Log(DebrisObject[i]);
+        }
+        m_Lights = new List<SunLight>();
+
+        m_Resource = 0;
+        m_bGetResource = false;
+        m_bEnergyHit = false;
     }
 
     // Update is called once per frame
@@ -31,13 +39,27 @@ public class MiningRobots : MonoBehaviour
         //Debrisタグ判定
         if (other.gameObject.tag == "Debris")
         {
-            if (Input.GetKey(KeyCode.Space))    //SPACE
+            for (int i = 0; i < DebrisObject.Length; i++)
             {
-                if (!GetResourceFlag)
+                if(other.gameObject == DebrisObject[i])
                 {
-                    Resource = 5;
+                    m_bEnergyHit = DebrisObject[i].GetComponent<Deb>().GetFlag();
                 }
-                GetResourceFlag = true;
+                else
+                {
+                    //return;
+                }
+            }
+
+           // m_bEnergyHit = other.GameObject.GetComponent<Deb>().GetFlag();
+
+            if (m_bEnergyHit)   //エネルギーがあたっているなら
+            {
+                if (!m_bGetResource)
+                {
+                    m_Resource = 5;
+                }
+                m_bGetResource = true;
             }
         }
         else
@@ -47,9 +69,10 @@ public class MiningRobots : MonoBehaviour
         }
     }
 
+
     public int GetResource()
     {
-        return Resource;
+        return m_Resource;
     }
 
 }
