@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class MassManager : MonoBehaviour
-{
-    Mass[,] mass;
-    
+{ 
+    public Vector2 scale;
     // Start is called before the first frame update
     void Start()
     {
