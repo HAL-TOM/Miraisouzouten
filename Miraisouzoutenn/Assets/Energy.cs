@@ -11,11 +11,14 @@ public class Energy : MonoBehaviour
 
     GameObject m_startobject;
     GameObject m_endobject;
+    GameObject hitobject;
 
     Vector3 m_direction;//方向ベクトル
     [SerializeField] float m_value;//現在のエネルギー
     float m_orijinlength;//もとのエネルギー(電力)の長さ
     float m_length;//現在のエネルギー(電力)長さ
+
+    bool m_hit;
 
     // Start is called before the first frame update
     void Start()
@@ -31,6 +34,8 @@ public class Energy : MonoBehaviour
 
         m_endobject = null;
         m_value = 0.0f;
+
+        m_hit = false;
     }
 
     // Update is called once per frame
@@ -46,6 +51,8 @@ public class Energy : MonoBehaviour
         {
             //レイが当たったオブジェクトを取得
             m_endobject = hit.collider.gameObject;
+
+            Debug.Log(m_endobject.name);
 
             //アマメグミのコンポーネントを持っている
             // ＋ 自身の親オブジェクトとは違う
@@ -64,6 +71,22 @@ public class Energy : MonoBehaviour
                 hit.collider.gameObject.GetComponent<Amamegumi>().HitEnergy(this);
             }
 
+            if (hit.collider.gameObject.GetComponent<EarthScript>() && m_startobject != m_endobject)
+            {
+                m_hit = true;
+                //レイが当たったオブジェクトとの距離を計算
+                float distance;
+                distance = Vector3.Distance(m_startobject.transform.position, hit.collider.transform.position);
+
+                //位置、長さ調整
+                m_length = distance;
+                Vector3 position;
+                position = m_startobject.transform.position + m_direction * m_length / 2;
+                transform.position = position;
+                this.gameObject.transform.localScale = new Vector3(0.2f, m_length, 0.2f);
+                //hit.collider.gameObject.GetComponent<Goal>().HitEnergy(this);
+            }
+
             if (hit.collider.gameObject.GetComponent<Goal>() && m_startobject != m_endobject)
             {
                 //レイが当たったオブジェクトとの距離を計算
@@ -77,6 +100,101 @@ public class Energy : MonoBehaviour
                 transform.position = position;
                 this.gameObject.transform.localScale = new Vector3(0.2f, m_length, 0.2f);
                 hit.collider.gameObject.GetComponent<Goal>().HitEnergy(this);
+            }
+
+            //デブリに当たったら
+            if (hit.collider.gameObject.GetComponent<Debri>() && m_startobject != m_endobject)
+            {
+                /*
+                デブリに当たったらレイを再出発
+                ＋飛ばすレイの長さの更新
+                */
+
+                //デブリに当たったからその分減算
+                m_value -= hit.collider.gameObject.GetComponent<Debri>().GetDecreaseValue();
+                hit.collider.gameObject.GetComponent<Debri>().SetEnergyValue(m_value);
+
+                //レイが当たったオブジェクトとの距離を計算
+                float distance;
+                distance = Vector3.Distance(m_startobject.transform.position, hit.collider.transform.position);
+
+                ray = new Ray(m_endobject.transform.position, m_direction);
+
+
+                if (Physics.Raycast(ray, out hit, m_length_limit - distance))
+                {
+                    //レイが当たったオブジェクトを取得
+                    hitobject = hit.collider.gameObject;
+                    Debug.Log(m_endobject.name);
+
+                    //アマメグミのコンポーネントを持っている
+                    // ＋ 自身の親オブジェクトとは違う
+                    if (hit.collider.gameObject.GetComponent<Amamegumi>() && m_startobject != hitobject)
+                    {
+                        //レイが当たったオブジェクトとの距離を計算
+                        distance = Vector3.Distance(m_startobject.transform.position, hit.collider.transform.position);
+
+                        //位置、長さ調整
+                        m_length = distance;
+                        Vector3 position;
+                        position = m_startobject.transform.position + m_direction * m_length / 2;
+                        transform.position = position;
+                        this.gameObject.transform.localScale = new Vector3(0.2f, m_length, 0.2f);
+                        hit.collider.gameObject.GetComponent<Amamegumi>().HitEnergy(this);
+                    }
+
+                    if (hit.collider.gameObject.GetComponent<EarthScript>() && m_startobject != hitobject)
+                    {
+                        m_hit = true;
+                        //レイが当たったオブジェクトとの距離を計算
+                        distance = Vector3.Distance(m_startobject.transform.position, hit.collider.transform.position);
+
+                        //位置、長さ調整
+                        m_length = distance;
+                        Vector3 position;
+                        position = m_startobject.transform.position + m_direction * m_length / 2;
+                        transform.position = position;
+                        this.gameObject.transform.localScale = new Vector3(0.2f, m_length, 0.2f);
+                        //hit.collider.gameObject.GetComponent<Goal>().HitEnergy(this);
+                    }
+
+                    if (hit.collider.gameObject.GetComponent<Goal>() && m_startobject != hitobject)
+                    {
+                        //レイが当たったオブジェクトとの距離を計算
+                        distance = Vector3.Distance(m_startobject.transform.position, hit.collider.transform.position);
+
+                        //位置、長さ調整
+                        m_length = distance;
+                        Vector3 position;
+                        position = m_startobject.transform.position + m_direction * m_length / 2;
+                        transform.position = position;
+                        this.gameObject.transform.localScale = new Vector3(0.2f, m_length, 0.2f);
+                        hit.collider.gameObject.GetComponent<Goal>().HitEnergy(this);
+                    }
+                }
+                else
+                {
+                    if (hitobject == null)
+                        return;
+
+                    if (hitobject.gameObject.GetComponent<Amamegumi>())
+                    {
+                        hitobject.gameObject.GetComponent<Amamegumi>().OutEnergy(this);
+                    }
+
+                    if (hitobject.gameObject.GetComponent<Goal>())
+                    {
+                        hitobject.gameObject.GetComponent<Goal>().OutEnergy(this);
+                    }
+
+                    hitobject = null;
+
+                    m_length = m_orijinlength;
+                    Vector3 position;
+                    position = m_startobject.transform.position + m_direction * m_length / 2;
+                    transform.position = position;
+                    this.gameObject.transform.localScale = new Vector3(0.2f, m_length, 0.2f);
+                }
             }
         }
         else
@@ -95,6 +213,12 @@ public class Energy : MonoBehaviour
             }
 
             m_endobject = null;
+
+            m_length = m_orijinlength;
+            Vector3 position;
+            position = m_startobject.transform.position + m_direction * m_length / 2;
+            transform.position = position;
+            this.gameObject.transform.localScale = new Vector3(0.2f, m_length, 0.2f);
         }
 
 
@@ -119,4 +243,10 @@ public class Energy : MonoBehaviour
     {
         return m_direction;
     }
+
+    public bool GetHit()
+    {
+        return m_hit;
+    }
+
 }
