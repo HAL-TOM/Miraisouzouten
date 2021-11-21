@@ -4,7 +4,13 @@
 TagManager:
   serializedVersion: 2
   tags:
+<<<<<<< HEAD
   - Mouse
+=======
+  - debri_small
+  - debri_big
+  - MiningRobots
+>>>>>>> 0eb0f4b7aaea9327ae786973232c08ff9a9f0be0
   layers:
   - Default
   - TransparentFX

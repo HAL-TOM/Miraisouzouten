@@ -59,8 +59,8 @@ public class MouseManager : MonoBehaviour
                                         clickObj.transform.position = hit.collider.transform.position + new Vector3(0.0f, 0.0f, -0.1f); ;
                                         clickObj.transform.localScale =
                                             new Vector3(
-                                                Mass.massManager.scale.x,
-                                                Mass.massManager.scale.y,
+                                                Mass.massManager.scale.x* hit.collider.transform.localScale.x,
+                                                Mass.massManager.scale.y * hit.collider.transform.localScale.y,
                                                 1.0f);
                                         SetState(MainState.OnSetting);
                                         return;
@@ -73,8 +73,8 @@ public class MouseManager : MonoBehaviour
                                         clickObj.transform.position = hit.collider.transform.position + new Vector3(0.0f, 0.0f, -0.1f); ;
                                         clickObj.transform.localScale =
                                             new Vector3(
-                                                Mass.massManager.scale.x,
-                                                Mass.massManager.scale.y,
+                                                Mass.massManager.scale.x * hit.collider.transform.localScale.x,
+                                                Mass.massManager.scale.y * hit.collider.transform.localScale.y,
                                                 1.0f);
                                         SetState(MainState.OnSetting);
                                         return;
