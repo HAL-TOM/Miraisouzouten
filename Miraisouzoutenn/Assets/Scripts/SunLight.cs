@@ -51,7 +51,7 @@ public class SunLight : MonoBehaviour
         startPos = m_StartObj.transform.position + (m_StartObj.transform.localScale.x + m_StartObj.transform.localScale.y) / 4 * m_Direction;
         float length;
         length = m_Length - (m_StartObj.transform.localScale.x + m_StartObj.transform.localScale.y) / 4;
-       foreach (RaycastHit hit in Physics.RaycastAll(startPos, m_Direction, length))
+        foreach (RaycastHit hit in Physics.RaycastAll(startPos, m_Direction, length))
         {
             m_HitFlag = true;
             //ヒットしたオブジェクトとレイを出したオブジェクトとの距離を算出
