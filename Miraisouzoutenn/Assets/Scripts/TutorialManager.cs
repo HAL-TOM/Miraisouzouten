@@ -17,6 +17,14 @@ public class TutorialManager : MonoBehaviour
         NEXT,
     };
 
+    public enum READ_STATUS
+    {
+        BEFORE_INIT = -1,
+        INIT,
+        COMPLETE,
+    };
+
+
     const float BASE_POS_X = 0.0f;
     const float BASE_POS_Y = 75.0f;
 
@@ -42,6 +50,11 @@ public class TutorialManager : MonoBehaviour
     public GameObject m_Sprite1;
     public GameObject m_Sprite2;
 
+    public GameObject m_StartButton;
+    public GameObject m_BackButton;
+    public GameObject m_NextButton;
+
+
     Image m_Sp1Image;
     Image m_Sp2Image;
 
@@ -59,7 +72,7 @@ public class TutorialManager : MonoBehaviour
 
     Sprite[] m_Textures;
 
-    public static int m_ReadALL = -1;
+    public static int m_ReadAll = (int)READ_STATUS.BEFORE_INIT;
 
     // Start is called before the first frame update
     void Start()
@@ -87,8 +100,19 @@ public class TutorialManager : MonoBehaviour
         m_Textures = Resources.LoadAll<Sprite>("Tutorial");
         m_Sp1Image.sprite = m_Textures[0];
 
-        if (m_ReadALL == -1)
-            m_ReadALL = 0;
+        //初回起動時のみm_ReadAllを初期化
+        if (m_ReadAll == (int)READ_STATUS.BEFORE_INIT)
+            m_ReadAll = (int)READ_STATUS.INIT;
+
+
+        //チュートリアルを全て読んでいたら、最初からスタートボタンをアクティブに
+        if (m_ReadAll == (int)READ_STATUS.COMPLETE)
+            m_StartButton.SetActive(true);
+        else
+            m_StartButton.SetActive(false);
+
+        //戻るボタンは最初は非アクティブ
+        m_BackButton.SetActive(false);
     }
 
     // Update is called once per frame
@@ -96,9 +120,7 @@ public class TutorialManager : MonoBehaviour
     {
         SceneManagement();
         LerpingSprite();
-
-        if ((m_TextureIndex + 1) == m_Textures.Length)
-            m_ReadALL = 1;
+        ButtonManagement();
     }
 
     /// <summary>
@@ -121,8 +143,8 @@ public class TutorialManager : MonoBehaviour
                             break;
 
                         case (int)BUTTON_TYPE.GAME_START:
-                            if (!(m_ReadALL == 1))
-                                return;
+                            //if (!(m_ReadAll == 1))
+                            //    return;
 
                             //SceneManager.LoadScene("StageSelect");////////////////////////適切なシーンの名前に変更
                             break;
@@ -137,6 +159,9 @@ public class TutorialManager : MonoBehaviour
                 m_FadeStarted = true;
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+            Debug.Log("リードオール" + m_ReadAll);
     }
    
     /// <summary>
@@ -249,6 +274,30 @@ public class TutorialManager : MonoBehaviour
 
     }
 
+    
+    /// <summary>
+    /// ボタンのアクティブ管理
+    /// </summary>
+    void ButtonManagement()
+    {
+
+        if ((m_TextureIndex + 1) == m_Textures.Length)
+        {
+            m_ReadAll = (int)READ_STATUS.COMPLETE;
+            m_NextButton.SetActive(false);
+        }
+        else
+            m_NextButton.SetActive(true);
+
+        if (m_TextureIndex == 0)
+            m_BackButton.SetActive(false);
+        else
+            m_BackButton.SetActive(true);
+
+        if (m_ReadAll == (int)READ_STATUS.COMPLETE)
+            m_StartButton.SetActive(true);
+    }
+    
     /// <summary>
     /// セッター
     /// </summary>
@@ -272,4 +321,24 @@ public class TutorialManager : MonoBehaviour
         return m_ChageScene;
     }
 
+    public int GetReadAll()
+    {
+        return m_ReadAll;
+    }
+
+    public bool GetTextureIndexMin()
+    {
+        if (m_TextureIndex == 0)
+            return true;
+
+        return false;
+    }
+
+    public bool GetTextureIndexMax()
+    {
+        if (m_TextureIndex == m_Textures.Length - 1)
+            return true;
+
+        return false;
+    }
 }

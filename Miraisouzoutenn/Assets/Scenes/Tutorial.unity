@@ -474,7 +474,7 @@ GameObject:
   - component: {fileID: 394642152}
   - component: {fileID: 394642154}
   m_Layer: 5
-  m_Name: TutorialBG
+  m_Name: BG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -519,7 +519,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: a96a8d3db0a04fc46813d9a66f183ab4, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -698,9 +698,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Fade: {fileID: 1757905989}
-  MOVE_SPEED: 1600
+  MOVE_SPEED: 3200
   m_Sprite1: {fileID: 1299631963}
   m_Sprite2: {fileID: 1997020121}
+  m_StartButton: {fileID: 1725862280}
+  m_BackButton: {fileID: 1103517642}
+  m_NextButton: {fileID: 1953303242}
 --- !u!4 &740702714
 Transform:
   m_ObjectHideFlags: 0

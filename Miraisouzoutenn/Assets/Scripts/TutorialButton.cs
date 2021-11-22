@@ -23,12 +23,15 @@ public class TutorialButton : MonoBehaviour
 
     EventTrigger m_Trigger;
 
+    
     private void Start()
     {
+        //子オブジェクトのテキストを取得し、色を初期化
         m_Text = GetComponentInChildren<Text>();
         m_Text.color = new Color(BASE_COLOR_R, BASE_COLOR_G, BASE_COLOR_B, 1.0f);
+        
 
-
+        //イベント登録
         m_Trigger = this.GetComponent<EventTrigger>();
 
         // マウスが重なったら色変更のイベントを登録
@@ -58,12 +61,14 @@ public class TutorialButton : MonoBehaviour
         m_Trigger.triggers.Add(entry);
 
     }
+
     
     /// <summary>
-    /// クリックされたら呼ばれる関数
+    /// クリックされたら呼ばれる関数 自身のボタンタイプを知らせる
     /// </summary>
     public void OnClick()
     {
+        
         Debug.Log("チュートリアルボタン　押された");
         //チュートリアルの説明切り替え中は処理されない
         if (m_TutorialManager.GetMoveFlag())
@@ -73,4 +78,17 @@ public class TutorialButton : MonoBehaviour
         //設定されたタイプをマネージャーに知らせる
         m_TutorialManager.SetType((int)m_Type);
     }
+
+    /// <summary>
+    /// 非アクティブになったら呼ばれる関数 色を初期化
+    /// </summary>
+    void OnDisable()
+    {
+        if (m_Text == null)
+            return;
+
+        m_Text.color = new Color(BASE_COLOR_R, BASE_COLOR_G, BASE_COLOR_B, 1.0f);
+    }
+
+
 }
