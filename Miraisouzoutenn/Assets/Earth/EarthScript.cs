@@ -6,38 +6,57 @@ using UnityEngine.SceneManagement;
 
 public class EarthScript : MonoBehaviour
 {
-    //電力
-    public int Electricity = 0;
-    //必要電力数
-    public int NeedElectricity;
-    //クリア判定
-    public bool Cleare;
+    GameObject[] m_object;
 
-    
+    //電力
+    public float Electricity = 0;
+    //必要電力数
+    public float NeedElectricity;
+    //クリア判定
+    public bool Clear;
+
+    bool m_hit;
+
+
     // Start is called before the first frame update
     void Start()
     {
-
 
     }
 
     // Update is called once per frame
     void Update()
     {
+        m_object = GameObject.FindGameObjectsWithTag("Energy");
+
+        foreach(GameObject gobject in m_object)
+        {
+            if(gobject.GetComponent<Energy>().GetHit())
+            {
+                Electricity += gobject.GetComponent<Energy>().GetValue();
+            }
+        }
+
         //Electricity = 電力
-        
+        AddElectricity();
+
         if (NeedElectricity <= Electricity)
         {
-            Cleare = true;
+            Clear = true;
         }
         else
         {
-            Cleare = false;
+            Clear = false;
         }
 
-        if(Cleare == true)
+        if(Clear == true)
         {
             SceneManager.LoadScene("Cleare");
         }
+    }
+
+    public void AddElectricity()
+    {
+
     }
 }
