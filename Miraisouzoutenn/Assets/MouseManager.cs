@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class MouseManager : MonoBehaviour
 {
-<<<<<<< HEAD
     static public MouseManager mouseManager;
     public enum MainState
     {
@@ -19,12 +18,6 @@ public class MouseManager : MonoBehaviour
 
     private ClickObj clickObj;
 
-=======
-    public ClickObj clickObj;
-    public float spinSpeed;
-
-    Quaternion targetRot;
->>>>>>> b7531f0bcdf936c10ddf8be958915ef396d690ef
     // Start is called before the first frame update
     void Start()
     {
@@ -43,7 +36,6 @@ public class MouseManager : MonoBehaviour
             case MainState.Drag:
                 DragUpdate();
 
-<<<<<<< HEAD
                 if (Input.GetMouseButtonUp(0))
                 {
                     if (clickObj != null)//menueItem‚ª‚ ‚é
@@ -67,8 +59,8 @@ public class MouseManager : MonoBehaviour
                                         clickObj.transform.position = hit.collider.transform.position + new Vector3(0.0f, 0.0f, -0.1f); ;
                                         clickObj.transform.localScale =
                                             new Vector3(
-                                                Mass.massManager.scale.x* hit.collider.transform.localScale.x,
-                                                Mass.massManager.scale.y * hit.collider.transform.localScale.y,
+                                                Mass.massManager.scale.x,
+                                                Mass.massManager.scale.y,
                                                 1.0f);
                                         SetState(MainState.OnSetting);
                                         return;
@@ -81,8 +73,8 @@ public class MouseManager : MonoBehaviour
                                         clickObj.transform.position = hit.collider.transform.position + new Vector3(0.0f, 0.0f, -0.1f); ;
                                         clickObj.transform.localScale =
                                             new Vector3(
-                                                Mass.massManager.scale.x * hit.collider.transform.localScale.x,
-                                                Mass.massManager.scale.y * hit.collider.transform.localScale.y,
+                                                Mass.massManager.scale.x,
+                                                Mass.massManager.scale.y,
                                                 1.0f);
                                         SetState(MainState.OnSetting);
                                         return;
@@ -114,27 +106,6 @@ public class MouseManager : MonoBehaviour
                         clickObj.DesObj();
                         SetState(MainState.ClickNon);
                         break;
-=======
-            if (Input.GetKey(KeyCode.A))
-            {
-                RotateLeft();
-            }
-            if (Input.GetKey(KeyCode.D))
-            {
-                RotateRight();
-                //RotateRight45();
-            }
-            if (Input.GetKey(KeyCode.R))
-            {
-                RotateReset();
-            }
-        }
-    }
-    void ClickCheeck()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
->>>>>>> b7531f0bcdf936c10ddf8be958915ef396d690ef
 
                     }
                     else
@@ -227,19 +198,5 @@ public class MouseManager : MonoBehaviour
 
         clickObj.transform.eulerAngles = new Vector3(0, 0, 0);
     }
-<<<<<<< HEAD
     public void SetClickObj(ClickObj set) { clickObj = set; }
-=======
-
-    void RotateRight45()
-    {
-        targetRot = Quaternion.AngleAxis(45.0f, Vector3.forward);
-        clickObj.transform.localRotation = Quaternion.Lerp(clickObj.transform.rotation, targetRot, spinSpeed * Time.deltaTime);
-    }
-
-    void RotateLeft45()
-    {
-
-    }
->>>>>>> b7531f0bcdf936c10ddf8be958915ef396d690ef
 }
