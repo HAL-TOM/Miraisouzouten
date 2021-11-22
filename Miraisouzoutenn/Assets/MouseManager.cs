@@ -43,18 +43,64 @@ public class MouseManager : MonoBehaviour
                         Ray ray = new Ray();
                         ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-                        //ヒットしたすべてのオブジェクト情報を取得
-                        foreach (RaycastHit hit in Physics.RaycastAll(ray))
+                        foreach (RaycastHit hit in Physics.RaycastAll(ray))//ヒットしたすべてのオブジェクト情報を取得
                         {
                             if (hit.collider.transform.GetComponent<Mass>() != null)
                             {
-                                Debug.Log("hitMass");
-                                hit.collider.transform.GetComponent<Mass>().SetObj(clickObj.transform.gameObject);
-                                clickObj.transform.position = hit.collider.transform.position + new Vector3(0.0f, 0.0f,- 0.1f); ;
+                                Mass mass = hit.collider.transform.GetComponent<Mass>();
+                                if(mass.obj==null)//配置してない
+                                {
 
-                                SetState(MainState.OnSetting);
-                                Debug.Log(mainState);
-                                return;
+
+                                    if (clickObj.menuID.id==MenueID.ID.AMA)//アマメグミをクリックしている
+                                    {
+
+                                        hit.collider.transform.GetComponent<Mass>().SetObj(clickObj.transform.gameObject);
+                                        clickObj.transform.position = hit.collider.transform.position + new Vector3(0.0f, 0.0f, -0.1f); ;
+                                        clickObj.transform.localScale =
+                                            new Vector3(
+                                                Mass.massManager.scale.x,
+                                                Mass.massManager.scale.y,
+                                                1.0f);
+                                        SetState(MainState.OnSetting);
+                                        return;
+                                    }
+
+                                    if (clickObj.menuID.id == MenueID.ID.REF)//反射衛星をクリックしている
+                                    {
+
+                                        hit.collider.transform.GetComponent<Mass>().SetObj(clickObj.transform.gameObject);
+                                        clickObj.transform.position = hit.collider.transform.position + new Vector3(0.0f, 0.0f, -0.1f); ;
+                                        clickObj.transform.localScale =
+                                            new Vector3(
+                                                Mass.massManager.scale.x,
+                                                Mass.massManager.scale.y,
+                                                1.0f);
+                                        SetState(MainState.OnSetting);
+                                        return;
+                                    }
+                                    
+                                }else//配置してある
+                                {
+                                    if (clickObj.menuID.id == MenueID.ID.SAI)//採掘ロボットをクリックしている
+                                    {
+                                        if(true)//マスにデプリが配置してある
+                                        {
+                                            if (true)//デプリに採掘ロボットが配置してない
+                                            {
+
+                                            }
+                                        }
+                                    }
+                                    if (clickObj.menuID.id == MenueID.ID.RCK)//ミサイルをクリックしている
+                                    {
+                                        
+                                        if (true)//マスにデプリが配置してある
+                                        {
+
+                                        }
+                                    }
+                                }
                             }
                         }
                         clickObj.DesObj();
