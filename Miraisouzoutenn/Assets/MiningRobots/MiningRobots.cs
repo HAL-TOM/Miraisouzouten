@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class MiningRobots : MonoBehaviour
 {
-    [SerializeField] private List<SunLight> m_Lights;
     GameObject[] DebrisObject; //代入用のゲームオブジェクト配列を用意
 
+    public Energy energyScript;
     public int m_Resource = 0;              //資源
     public bool m_bGetResource = false;    //資源獲得フラグ
     public bool m_bEnergyHit = false;
@@ -20,7 +20,7 @@ public class MiningRobots : MonoBehaviour
         {
             Debug.Log(DebrisObject[i]);
         }
-        m_Lights = new List<SunLight>();
+
 
         m_Resource = 0;
         m_bGetResource = false;
@@ -43,7 +43,10 @@ public class MiningRobots : MonoBehaviour
             {
                 if(other.gameObject == DebrisObject[i])
                 {
-                    m_bEnergyHit = DebrisObject[i].GetComponent<Deb>().GetFlag();
+                    if (energyScript.GetHit())
+                    {
+                        m_bEnergyHit = energyScript.GetHit();
+                    }
                 }
                 else
                 {

@@ -3,18 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-<<<<<<< HEAD
-<<<<<<< HEAD
-  - Mouse
-=======
-  - debri_small
-  - debri_big
-  - MiningRobots
->>>>>>> 0eb0f4b7aaea9327ae786973232c08ff9a9f0be0
-=======
-  - Energy
->>>>>>> b7531f0bcdf936c10ddf8be958915ef396d690ef
+  tags: []
   layers:
   - Default
   - TransparentFX
