@@ -39,7 +39,7 @@ public class TutorialManager : MonoBehaviour
     public float MOVE_SPEED;
 
 
-    FadeManager m_FadeManager;
+//    FadeManager m_FadeManager;
 
     bool m_ChageScene;
     bool m_FadeStarted;
@@ -82,7 +82,7 @@ public class TutorialManager : MonoBehaviour
         m_FadeStarted = false;
         m_MoveFlag = false;
         m_ButtonType = -1;
-        m_FadeManager = m_Fade.GetComponent<FadeManager>();
+  //      m_FadeManager = m_Fade.GetComponent<FadeManager>();
 
         m_Sp1Start = new Vector3(0.0f, 0.0f, 0.0f);
         m_Sp1End = new Vector3(0.0f, 0.0f, 0.0f);
@@ -135,7 +135,7 @@ public class TutorialManager : MonoBehaviour
             if (m_FadeStarted)
             {
                 //フェードが既に始まり、終わっていたらシーン切り替え
-                if (!m_FadeManager.GetIsFade())
+         //       if (!m_FadeManager.GetIsFade())
                     switch (m_ButtonType)
                     {
                         case (int)BUTTON_TYPE.TITLE:
@@ -155,7 +155,7 @@ public class TutorialManager : MonoBehaviour
             else
             {
                 //一度だけフェードアウトを呼ぶ
-                m_FadeManager.StartFadeOut();
+   //             m_FadeManager.StartFadeOut();
                 m_FadeStarted = true;
             }
         }

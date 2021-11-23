@@ -43,6 +43,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f3908dfc4c35ce4aae665b4e8214521, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clickObj: {fileID: 0}
-  spinSpeed: 150
   mainState: 0
