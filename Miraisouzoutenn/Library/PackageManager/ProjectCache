@@ -5,11 +5,7 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-<<<<<<< HEAD
       ticks: 637697720721845016
-=======
-      ticks: 637730917872886626
->>>>>>> 2f62934aed42a1f079959f1d1317d1979bf450c1
     m_Hash: 591798746
   m_LockFileStatus:
     m_FilePath: "D:/\u30DF\u30BD\u30C6\u30F3/Miraisouzoutenn/Packages/packages-lock.json"
@@ -17,11 +13,7 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-<<<<<<< HEAD
       ticks: 637697720721854989
-=======
-      ticks: 637730917872886626
->>>>>>> 2f62934aed42a1f079959f1d1317d1979bf450c1
     m_Hash: 1868736404
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
@@ -2654,18 +2646,8 @@ m_PackageAssets:
       errors: []
       versions:
         all:
-        - 0.1.5-preview
-        - 0.1.6-preview
-        - 0.1.9-preview
-        - 1.0.0
-        - 1.0.5
         - 1.0.6
         compatible:
-        - 0.1.5-preview
-        - 0.1.6-preview
-        - 0.1.9-preview
-        - 1.0.0
-        - 1.0.5
         - 1.0.6
         verified: 1.0.6
       dependencies: []
@@ -2686,7 +2668,7 @@ m_PackageAssets:
       entitlements:
         isAllowed: 1
       isAssetStorePackage: 0
-      datePublishedTicks: 637429759280000000
+      datePublishedTicks: 0
       documentationUrl: 
       hasRepository: 1
       repository:
