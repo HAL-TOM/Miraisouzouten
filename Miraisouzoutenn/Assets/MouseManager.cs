@@ -54,7 +54,7 @@ public class MouseManager : MonoBehaviour
 
                                     if (clickObj.menuID.id==MenueID.ID.AMA)//アマメグミをクリックしている
                                     {
-
+                                        Debug.Log("ama");
                                         hit.collider.transform.GetComponent<Mass>().SetObj(clickObj.transform.gameObject);
                                         clickObj.transform.position = hit.collider.transform.position + new Vector3(0.0f, 0.0f, -0.1f); ;
                                         clickObj.transform.localScale =
@@ -84,20 +84,42 @@ public class MouseManager : MonoBehaviour
                                 {
                                     if (clickObj.menuID.id == MenueID.ID.SAI)//採掘ロボットをクリックしている
                                     {
-                                        if(true)//マスにデプリが配置してある
+                                        if(mass.obj.GetComponent<Debri>())//マスにデプリが配置してある
                                         {
-                                            if (true)//デプリに採掘ロボットが配置してない
+                                            Debri debri = mass.obj.GetComponent<Debri>();
+                                            if (!debri.GetExist()) //デプリに採掘ロボットが配置してない
                                             {
+                                                //ここでデブリ
+                                                clickObj.transform.localScale =
+                                                    new Vector3(
+                                                        Mass.massManager.scale.x,
+                                                        Mass.massManager.scale.y,
+                                                        1.0f);
+                                                clickObj.transform.position = hit.collider.transform.position + new Vector3(0.0f, Mass.massManager.scale.y/2.0f, -0.1f); ;
+                                                clickObj.GetComponent<MRobot>().debri=debri;
+                                                SetState(MainState.OnSetting);
 
+                                                debri.SetExist(true);
+                                                return;
                                             }
                                         }
                                     }
-                                    if (clickObj.menuID.id == MenueID.ID.RCK)//ミサイルをクリックしている
+                                    else if (clickObj.menuID.id == MenueID.ID.RCK)//ミサイルをクリックしている
                                     {
-                                        
-                                        if (true)//マスにデプリが配置してある
-                                        {
 
+                                        if (mass.obj.GetComponent<Debri>())//マスにデプリが配置してある
+                                        {  
+                                            clickObj.transform.localScale =
+                                                new Vector3(
+                                                    Mass.massManager.scale.x,
+                                                    Mass.massManager.scale.y,
+                                                    1.0f);
+                                            clickObj.transform.position = hit.collider.transform.position + new Vector3(0.0f, Mass.massManager.scale.y / 2.0f, -0.1f); ;
+
+                                            //ここでデブリ
+                                            clickObj.GetComponent<Rocket>().debri = mass.obj.GetComponent<Debri>();
+                                            SetState(MainState.OnSetting);
+                                            return;
                                         }
                                     }
                                 }
@@ -131,16 +153,26 @@ public class MouseManager : MonoBehaviour
                     }
                     if (Input.GetKeyDown(KeyCode.Space))
                     {
+                        if (clickObj.transform.GetComponent<MRobot>())
+                        {
+                            clickObj.transform.GetComponent<MRobot>().debri.Break();
+                            clickObj.DesObj();
 
+                        }
+                        if (clickObj.transform.GetComponent<Rocket>())
+                        {
+                            clickObj.transform.GetComponent<Rocket>().debri.Break();
+                            clickObj.DesObj();
+                        }
                         SetState(MainState.ClickNon);
                     }
 
                     if (Input.GetKeyDown(KeyCode.G))
                     {
-                        
+
                         SetState(MainState.ClickNon);
+                        Debug.Log("G");
                         
-                        clickObj.DesObj();
                     }
                     if (Input.GetKey(KeyCode.R))
                     {

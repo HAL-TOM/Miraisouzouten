@@ -28,8 +28,8 @@ public class EarthScript : MonoBehaviour
     void Update()
     {
         m_object = GameObject.FindGameObjectsWithTag("Energy");
-
-        foreach(GameObject gobject in m_object)
+        Electricity = 0;
+        foreach (GameObject gobject in m_object)
         {
             if(gobject.GetComponent<Energy>().GetHit())
             {
@@ -59,4 +59,14 @@ public class EarthScript : MonoBehaviour
     {
 
     }
+
+    public float GetNeedElectricity()
+    {
+        return NeedElectricity;
+    }
+    public float GetNowElectricity()
+    {
+        return Electricity;
+    }
+
 }

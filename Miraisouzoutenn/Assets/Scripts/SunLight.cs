@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class SunLight : MonoBehaviour
 {
-    const float DEFAULT_SCALE = 0.25f;
+    const float DEFAULT_SCALE = 15;
 
     public GameObject m_StartObj;
     public GameObject m_EndObj;
-    public Vector3 m_Direction;
+    [SerializeField]public Vector3 m_Direction;
     public float m_OriginLength;
     float m_Length;
     public float m_Value;
@@ -24,6 +24,11 @@ public class SunLight : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (m_StartObj == null)
+        {
+            DestoroyLight();
+            return;
+        }
         if (Vector3.Magnitude(m_Direction) > 1.0f)
             m_Direction = Vector3.Normalize(m_Direction);
 
@@ -83,7 +88,7 @@ public class SunLight : MonoBehaviour
             }
 
             m_EndObj = hit.collider.gameObject;
-            Debug.Log("HitObj:" + hit.collider.gameObject.name);
+          //  Debug.Log("HitObj:" + hit.collider.gameObject.name);
         }
         
         

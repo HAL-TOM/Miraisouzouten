@@ -13,6 +13,13 @@ public class Mass : MonoBehaviour
     {
         material = this.GetComponent<Renderer>().material;
         material.color = new Color(material.color.r, material.color.g, material.color.b, 0.5f);
+        if (obj)
+        {
+            if (obj.GetComponent<Debri>())
+            {
+                obj.GetComponent<Debri>().mass = this;
+            }
+        }
     }
 
     // Update is called once per frame
@@ -30,7 +37,7 @@ public class Mass : MonoBehaviour
 
         //現在位置を、スクリーン座標からワールド座標に変換して、pointWorldに格納
         Vector3 pointWorld = Camera.main.ScreenToWorldPoint(pointScreen);
-
+      //  Debug.Log(pointWorld);
         pointWorld.z = transform.position.z;
         Vector2 o = new Vector2(transform.position.x - pointWorld.x, transform.position.y - pointWorld.y);
         if ((o.x <= transform.lossyScale.x / 2) &&

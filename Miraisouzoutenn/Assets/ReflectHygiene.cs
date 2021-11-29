@@ -63,13 +63,25 @@ public class ReflectHygiene : MonoBehaviour
         }
     }
 
-    private void DestoroyLight(InLight light)
+    public void DestoroyLight(InLight light)
     {
         //light.outL;//消える処理
         light.outLight.DestoroyLight();
         m_inLights.Remove(light); // 要素の削除
 
-    } 
+    }
+    public void DestoroyLight()
+    {
+
+        foreach (InLight inl in m_inLights  )
+        {
+            inl.outLight.DestoroyLight();
+
+        }
+
+        m_inLights.Clear(); // 要素の削除
+
+    }
     private SunLight ReflectLight(SunLight inL)
     {
         GameObject instance = Instantiate(m_LightRes,
@@ -88,6 +100,11 @@ public class ReflectHygiene : MonoBehaviour
         normal_n = Vector3.Normalize(transform.up);//法線ベクトル（GameObjectの上ベクトル）
         return Vector3.Normalize(inV - 2.0f * Vector3.Dot(inV, normal_n) * normal_n);
        
+    }
+
+    public GameObject GetLight()
+    {
+        return m_LightRes;
     }
 
 
