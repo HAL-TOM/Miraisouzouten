@@ -143,14 +143,19 @@ public class MouseManager : MonoBehaviour
                 if (clickObj != null)
                 {
 
-                    if (Input.GetKeyDown(KeyCode.A))
+                    if(clickObj.GetComponent<ReflectHygiene>() || clickObj.GetComponent<Amamegumi>()  )
                     {
-                        RotateLeft();
+
+                        if (Input.GetKey(KeyCode.A))
+                        {
+                            RotateLeft();
+                        }
+                        if (Input.GetKey(KeyCode.D))
+                        {
+                            RotateRight();
+                        }
                     }
-                    if (Input.GetKeyDown(KeyCode.D))
-                    {
-                        RotateRight();
-                    }
+
                     if (Input.GetKeyDown(KeyCode.Space))
                     {
                         if (clickObj.transform.GetComponent<MRobot>())
@@ -171,6 +176,8 @@ public class MouseManager : MonoBehaviour
                     {
 
                         SetState(MainState.ClickNon);
+
+                        clickObj.DesObj();
                         Debug.Log("G");
                         
                     }
@@ -218,11 +225,11 @@ public class MouseManager : MonoBehaviour
 
     void RotateRight()
     {
-        clickObj.transform.Rotate(new Vector3(0, 0, 1), -45.0f);
+        clickObj.transform.Rotate(new Vector3(0, 0, 1), -1.0f);
     }
     void RotateLeft()
     {
-        clickObj.transform.Rotate(new Vector3(0, 0, 1), 45.0f);
+        clickObj.transform.Rotate(new Vector3(0, 0, 1), 1.0f);
 
     }
     void RotateReset()
