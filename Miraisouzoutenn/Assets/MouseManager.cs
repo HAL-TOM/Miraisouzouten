@@ -54,7 +54,7 @@ public class MouseManager : MonoBehaviour
 
                                     if (clickObj.menuID.id==MenueID.ID.AMA)//アマメグミをクリックしている
                                     {
-
+                                        Debug.Log("ama");
                                         hit.collider.transform.GetComponent<Mass>().SetObj(clickObj.transform.gameObject);
                                         clickObj.transform.position = hit.collider.transform.position + new Vector3(0.0f, 0.0f, -0.1f); ;
                                         clickObj.transform.localScale =

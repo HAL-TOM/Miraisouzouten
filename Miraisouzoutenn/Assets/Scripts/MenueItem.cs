@@ -37,6 +37,7 @@ public class MenueItem : MonoBehaviour
     }
     private void Create()
     {
+        Vector3 mousepos = transform.position;
 
         GameObject instance = Instantiate(
             m_Res,                                     
@@ -49,7 +50,7 @@ public class MenueItem : MonoBehaviour
         menueID.id = m_menueID.id;
         clickObj.menuID = menueID;
 
-
+        instance.transform.position = new Vector3(instance.transform.position.x, instance.transform.position.y, -1.0f);
         MouseManager.mouseManager.SetClickObj(instance.GetComponent<ClickObj>());
     }
 
