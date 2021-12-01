@@ -2,10 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class ButtonController : BaseButtonController
 {
+    public string sceneName;
+    public PanelChange panel;
+    public bool backFlag;
+    public bool returnFlag;
+
+    void Start()
+    {
+        backFlag = false;
+    }
+
     protected override void OnClick(string objectName)
     {
         // 渡されたオブジェクト名で処理を分岐
@@ -50,7 +61,7 @@ public class ButtonController : BaseButtonController
         {
             this.Button10Click();
         }
-        if ("Button11".Equals(objectName))
+        else if ("Button11".Equals(objectName))
         {
             this.Button11Click();
         }
@@ -90,118 +101,207 @@ public class ButtonController : BaseButtonController
         {
             this.Button20Click();
         }
+        else if ("Yes".Equals(objectName))
+        {
+            this.YesClick();
+        }
+        else if ("No".Equals(objectName))
+        {
+            this.NoClick();
+        }
+        else if ("Audio".Equals(objectName))
+        {
+        }
+        else if ("Title".Equals(objectName))
+        {
+        }
+        else if ("Back".Equals(objectName))
+        {
+            this.BackClick();
+        }
         else
         {
             throw new System.Exception("Not implemented!!");
         }
+
     }
 
     private void Button1Click()
     {
         Debug.Log("Button1 Click");
-        SceneManager.LoadScene("Stage1");
+        sceneName = "Stage1";
+        backFlag = false;
     }
 
     private void Button2Click()
     {
         Debug.Log("Button2 Click");
-        SceneManager.LoadScene("Stage2");
+        sceneName = "Stage2";
+        backFlag = false;
+
     }
 
     private void Button3Click()
     {
         Debug.Log("Button3 Click");
-        SceneManager.LoadScene("Stage3");
+        sceneName = "Stage3";
+        backFlag = false;
+
     }
 
     private void Button4Click()
     {
         Debug.Log("Button4 Click");
-        SceneManager.LoadScene("Stage4");
+        sceneName = "Stage4";
+        backFlag = false;
+
     }
 
     private void Button5Click()
     {
         Debug.Log("Button5 Click");
-        SceneManager.LoadScene("Stage5");
+        sceneName = "Stage5";
+        backFlag = false;
+
     }
+
     private void Button6Click()
     {
         Debug.Log("Button6 Click");
-        SceneManager.LoadScene("Stage6");
+        sceneName = "Stage6";
+        backFlag = false;
+
     }
 
     private void Button7Click()
     {
         Debug.Log("Button7 Click");
-        SceneManager.LoadScene("Stage7");
+        sceneName = "Stage7";
+        backFlag = false;
+
     }
 
     private void Button8Click()
     {
         Debug.Log("Button8 Click");
-        SceneManager.LoadScene("Stage8");
+        sceneName = "Stage8";
+        backFlag = false;
+
     }
 
     private void Button9Click()
     {
         Debug.Log("Button9 Click");
-        SceneManager.LoadScene("Stage9");
+        sceneName = "Stage9";
+        backFlag = false;
+
     }
 
     private void Button10Click()
     {
         Debug.Log("Button10 Click");
-        SceneManager.LoadScene("Stage10");
+        sceneName = "Stage10";
+        backFlag = false;
+
     }
 
     private void Button11Click()
     {
         Debug.Log("Button11 Click");
+        backFlag = true;
+
     }
 
     private void Button12Click()
     {
         Debug.Log("Button12 Click");
+        backFlag = true;
+
     }
 
     private void Button13Click()
     {
         Debug.Log("Button13 Click");
+        backFlag = true;
+
     }
 
     private void Button14Click()
     {
         Debug.Log("Button14 Click");
+        backFlag = true;
+
     }
 
     private void Button15Click()
     {
         Debug.Log("Button15 Click");
+        backFlag = true;
+
     }
 
     private void Button16Click()
     {
         Debug.Log("Button16 Click");
+        backFlag = true;
+
     }
 
     private void Button17Click()
     {
         Debug.Log("Button17 Click");
+        backFlag = true;
+
     }
 
     private void Button18Click()
     {
         Debug.Log("Button18 Click");
+        backFlag = true;
+
     }
 
     private void Button19Click()
     {
         Debug.Log("Button19 Click");
+        backFlag = true;
+
     }
 
     private void Button20Click()
     {
         Debug.Log("Button20 Click");
+        backFlag = true;
+
     }
+
+    private void YesClick()
+    {
+        SceneManager.LoadScene(sceneName);
+    }
+
+    private void NoClick()
+    {
+        if (!backFlag)
+        {
+            panel.MainView();
+        }
+        else if (backFlag)
+        {
+            panel.SubView();
+        }
+    }
+
+    private void BackClick()
+    {
+        if (!returnFlag)
+        {
+            panel.MainView();
+        }
+        else if (returnFlag)
+        {
+            panel.SubView();
+        }
+    }
+
 }
