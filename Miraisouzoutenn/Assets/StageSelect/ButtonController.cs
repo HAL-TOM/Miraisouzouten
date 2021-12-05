@@ -20,7 +20,6 @@ public class ButtonController : BaseButtonController
     protected override void OnClick(string objectName)
     {
         // 渡されたオブジェクト名で処理を分岐
-        //（オブジェクト名はどこかで一括管理した方がいいかも）
         if ("Button01".Equals(objectName))
         {
             this.Button1Click();
