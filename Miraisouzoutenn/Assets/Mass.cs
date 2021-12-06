@@ -13,6 +13,13 @@ public class Mass : MonoBehaviour
     {
         material = this.GetComponent<Renderer>().material;
         material.color = new Color(material.color.r, material.color.g, material.color.b, 0.5f);
+        if (obj)
+        {
+            if (obj.GetComponent<Debri>())
+            {
+                obj.GetComponent<Debri>().mass = this;
+            }
+        }
     }
 
     // Update is called once per frame

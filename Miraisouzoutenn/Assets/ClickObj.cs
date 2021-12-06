@@ -26,8 +26,18 @@ public class ClickObj : MonoBehaviour
         Destroy(menuID);
         Destroy(this);
     }
+
     public void DesObj()
     {
+        if (gameObject.GetComponent<ReflectHygiene>())
+        {
+            if (gameObject.GetComponent<ReflectHygiene>().GetLight())
+            {
+                gameObject.GetComponent<ReflectHygiene>().DestoroyLight();
+
+            }
+        }
+            
         Destroy(gameObject);
     }
 }

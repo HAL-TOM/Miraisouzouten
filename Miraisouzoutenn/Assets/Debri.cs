@@ -16,6 +16,8 @@ public class Debri : MonoBehaviour
     List<Energy> m_energies;
     float m_decrease_value;//減算用の変数
     float m_energy_value;//当たってるエネルギーの値
+    public Mass mass;
+    bool m_exist;
 
 
     // Start is called before the first frame update
@@ -23,6 +25,7 @@ public class Debri : MonoBehaviour
     {
         m_decrease_value = (int)m_debri_type;
         m_energy_value = 0.0f;
+        m_exist = false;
     }
 
     // Update is called once per frame
@@ -49,8 +52,18 @@ public class Debri : MonoBehaviour
         }
         if(m_debri_type == DEBRI_TYPE.SMALL)
         {
+            mass.obj = null;
             Destroy(this.gameObject);
         }
+    }
+    public void SetExist(bool exist)
+    {
+        m_exist = exist;
+    }
+
+    public bool GetExist()
+    {
+        return m_exist;
     }
 
     //問答無用で壊す

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Energy : MonoBehaviour
 {
+    const float SCALE_ZIZE =3f;
+
     //注意！！
     //現在アマメグミのRotationをいじるとベクトルとの整合性が崩れる
 
@@ -27,10 +29,11 @@ public class Energy : MonoBehaviour
         m_direction = new Vector3(0.0f, 1.0f, 0.0f);
 
         m_startobject = this.gameObject.transform.root.gameObject;//親オブジェクト取得
+
         Vector3 position;
         position = m_startobject.transform.position + m_direction * m_length / 2;
         transform.position = position;
-        this.gameObject.transform.localScale = new Vector3(0.2f, m_length, 0.2f);
+        this.gameObject.transform.localScale = new Vector3(SCALE_ZIZE, m_length, SCALE_ZIZE);
 
         m_endobject = null;
         m_value = 0.0f;
@@ -63,11 +66,8 @@ public class Energy : MonoBehaviour
                 distance = Vector3.Distance(m_startobject.transform.position, hit.collider.transform.position);
 
                 //位置、長さ調整
-                m_length = distance;
-                Vector3 position;
-                position = m_startobject.transform.position + m_direction * m_length / 2;
-                transform.position = position;
-                this.gameObject.transform.localScale = new Vector3(0.2f, m_length, 0.2f);
+                DispManagement(distance);
+
                 hit.collider.gameObject.GetComponent<Amamegumi>().HitEnergy(this);
             }
 
@@ -79,12 +79,7 @@ public class Energy : MonoBehaviour
                 distance = Vector3.Distance(m_startobject.transform.position, hit.collider.transform.position);
 
                 //位置、長さ調整
-                m_length = distance;
-                Vector3 position;
-                position = m_startobject.transform.position + m_direction * m_length / 2;
-                transform.position = position;
-                this.gameObject.transform.localScale = new Vector3(0.2f, m_length, 0.2f);
-                //hit.collider.gameObject.GetComponent<Goal>().HitEnergy(this);
+                DispManagement(distance);
             }
 
             if (hit.collider.gameObject.GetComponent<Goal>() && m_startobject != m_endobject)
@@ -94,11 +89,8 @@ public class Energy : MonoBehaviour
                 distance = Vector3.Distance(m_startobject.transform.position, hit.collider.transform.position);
 
                 //位置、長さ調整
-                m_length = distance;
-                Vector3 position;
-                position = m_startobject.transform.position + m_direction * m_length / 2;
-                transform.position = position;
-                this.gameObject.transform.localScale = new Vector3(0.2f, m_length, 0.2f);
+                DispManagement(distance);
+
                 hit.collider.gameObject.GetComponent<Goal>().HitEnergy(this);
             }
 
@@ -135,11 +127,7 @@ public class Energy : MonoBehaviour
                         distance = Vector3.Distance(m_startobject.transform.position, hit.collider.transform.position);
 
                         //位置、長さ調整
-                        m_length = distance;
-                        Vector3 position;
-                        position = m_startobject.transform.position + m_direction * m_length / 2;
-                        transform.position = position;
-                        this.gameObject.transform.localScale = new Vector3(0.2f, m_length, 0.2f);
+                        DispManagement(distance);
                         hit.collider.gameObject.GetComponent<Amamegumi>().HitEnergy(this);
                     }
 
@@ -150,12 +138,7 @@ public class Energy : MonoBehaviour
                         distance = Vector3.Distance(m_startobject.transform.position, hit.collider.transform.position);
 
                         //位置、長さ調整
-                        m_length = distance;
-                        Vector3 position;
-                        position = m_startobject.transform.position + m_direction * m_length / 2;
-                        transform.position = position;
-                        this.gameObject.transform.localScale = new Vector3(0.2f, m_length, 0.2f);
-                        //hit.collider.gameObject.GetComponent<Goal>().HitEnergy(this);
+                        DispManagement(distance);
                     }
 
                     if (hit.collider.gameObject.GetComponent<Goal>() && m_startobject != hitobject)
@@ -164,11 +147,8 @@ public class Energy : MonoBehaviour
                         distance = Vector3.Distance(m_startobject.transform.position, hit.collider.transform.position);
 
                         //位置、長さ調整
-                        m_length = distance;
-                        Vector3 position;
-                        position = m_startobject.transform.position + m_direction * m_length / 2;
-                        transform.position = position;
-                        this.gameObject.transform.localScale = new Vector3(0.2f, m_length, 0.2f);
+                        DispManagement(distance);
+
                         hit.collider.gameObject.GetComponent<Goal>().HitEnergy(this);
                     }
                 }
@@ -189,11 +169,7 @@ public class Energy : MonoBehaviour
 
                     hitobject = null;
 
-                    m_length = m_orijinlength;
-                    Vector3 position;
-                    position = m_startobject.transform.position + m_direction * m_length / 2;
-                    transform.position = position;
-                    this.gameObject.transform.localScale = new Vector3(0.2f, m_length, 0.2f);
+                    DispManagement(m_orijinlength);
                 }
             }
         }
@@ -214,14 +190,20 @@ public class Energy : MonoBehaviour
 
             m_endobject = null;
 
-            m_length = m_orijinlength;
-            Vector3 position;
-            position = m_startobject.transform.position + m_direction * m_length / 2;
-            transform.position = position;
-            this.gameObject.transform.localScale = new Vector3(0.2f, m_length, 0.2f);
+            DispManagement(m_orijinlength);
         }
 
+        Debug.Log(m_value);
+    }
 
+    //長さ調整
+    void DispManagement(float length)
+    {
+        m_length = length;
+        Vector3 position;
+        position = m_startobject.transform.position + m_direction * m_length / 2;
+        transform.position = position;
+        this.gameObject.transform.localScale = new Vector3(SCALE_ZIZE, m_length, SCALE_ZIZE);
     }
 
     public void DestroyEnergy()

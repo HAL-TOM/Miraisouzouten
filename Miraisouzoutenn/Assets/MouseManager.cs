@@ -84,20 +84,42 @@ public class MouseManager : MonoBehaviour
                                 {
                                     if (clickObj.menuID.id == MenueID.ID.SAI)//採掘ロボットをクリックしている
                                     {
-                                        if(true)//マスにデプリが配置してある
+                                        if(mass.obj.GetComponent<Debri>())//マスにデプリが配置してある
                                         {
-                                            if (true)//デプリに採掘ロボットが配置してない
+                                            Debri debri = mass.obj.GetComponent<Debri>();
+                                            if (!debri.GetExist()) //デプリに採掘ロボットが配置してない
                                             {
+                                                //ここでデブリ
+                                                clickObj.transform.localScale =
+                                                    new Vector3(
+                                                        Mass.massManager.scale.x,
+                                                        Mass.massManager.scale.y,
+                                                        1.0f);
+                                                clickObj.transform.position = hit.collider.transform.position + new Vector3(0.0f, Mass.massManager.scale.y/2.0f, -0.1f); ;
+                                                clickObj.GetComponent<MRobot>().debri=debri;
+                                                SetState(MainState.OnSetting);
 
+                                                debri.SetExist(true);
+                                                return;
                                             }
                                         }
                                     }
-                                    if (clickObj.menuID.id == MenueID.ID.RCK)//ミサイルをクリックしている
+                                    else if (clickObj.menuID.id == MenueID.ID.RCK)//ミサイルをクリックしている
                                     {
-                                        
-                                        if (true)//マスにデプリが配置してある
-                                        {
 
+                                        if (mass.obj.GetComponent<Debri>())//マスにデプリが配置してある
+                                        {  
+                                            clickObj.transform.localScale =
+                                                new Vector3(
+                                                    Mass.massManager.scale.x,
+                                                    Mass.massManager.scale.y,
+                                                    1.0f);
+                                            clickObj.transform.position = hit.collider.transform.position + new Vector3(0.0f, Mass.massManager.scale.y / 2.0f, -0.1f); ;
+
+                                            //ここでデブリ
+                                            clickObj.GetComponent<Rocket>().debri = mass.obj.GetComponent<Debri>();
+                                            SetState(MainState.OnSetting);
+                                            return;
                                         }
                                     }
                                 }
@@ -121,26 +143,47 @@ public class MouseManager : MonoBehaviour
                 if (clickObj != null)
                 {
 
-                    if (Input.GetKeyDown(KeyCode.A))
-                    {
-                        RotateLeft();
-                    }
-                    if (Input.GetKeyDown(KeyCode.D))
-                    {
-                        RotateRight();
-                    }
-                    if (Input.GetKeyDown(KeyCode.Space))
+                    if(clickObj.GetComponent<ReflectHygiene>() || clickObj.GetComponent<Amamegumi>()  )
                     {
 
+                        if (Input.GetKey(KeyCode.A))
+                        {
+                            RotateLeft();
+                        }
+                        if (Input.GetKey(KeyCode.D))
+                        {
+                            RotateRight();
+                        }
+                    }
+
+                    if (Input.GetKeyDown(KeyCode.Space))
+                    {
+                        if (clickObj.transform.GetComponent<MRobot>())
+                        {
+                            clickObj.transform.GetComponent<MRobot>().debri.Break();
+                            clickObj.DesObj();
+
+
+                        }
+
+                        
+                        if (clickObj.transform.GetComponent<Rocket>())
+                        {
+                            clickObj.transform.GetComponent<Rocket>().debri.Break();
+                            clickObj.DesObj();
+                        }
+                        
                         SetState(MainState.ClickNon);
                     }
 
                     if (Input.GetKeyDown(KeyCode.G))
                     {
-                        
+
                         SetState(MainState.ClickNon);
-                        
+
                         clickObj.DesObj();
+                        Debug.Log("G");
+                        
                     }
                     if (Input.GetKey(KeyCode.R))
                     {
@@ -186,11 +229,11 @@ public class MouseManager : MonoBehaviour
 
     void RotateRight()
     {
-        clickObj.transform.Rotate(new Vector3(0, 0, 1), -45.0f);
+        clickObj.transform.Rotate(new Vector3(0, 0, 1), -1.0f);
     }
     void RotateLeft()
     {
-        clickObj.transform.Rotate(new Vector3(0, 0, 1), 45.0f);
+        clickObj.transform.Rotate(new Vector3(0, 0, 1), 1.0f);
 
     }
     void RotateReset()

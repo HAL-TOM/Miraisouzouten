@@ -20,7 +20,7 @@ public class MenueItem : MonoBehaviour
     }
     public void Click()//ƒNƒŠƒbƒN‚³‚ê‚½‚ç
     {
-
+        
         if (MouseManager.mouseManager.mainState == MouseManager.MainState.ClickNon)
         {
             if(OnClick())

@@ -110,13 +110,13 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 5863545184972613228}
-          m_TargetAssemblyTypeName: 
-          m_MethodName: 
+        - m_Target: {fileID: 5863545184972613232}
+          m_TargetAssemblyTypeName: MenueItem, Assembly-CSharp
+          m_MethodName: Click
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: 
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -225,7 +225,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ae4de6e0142e56449a1ad6080c25f23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Res: {fileID: 127868191388550361, guid: 70e7d665e0936d947a3781354e8e1f7e, type: 3}
+  m_Res: {fileID: 2695754641879304365, guid: 48c3c1503140a754ab71872b175ce2f6, type: 3}
   m_menueID: {fileID: 0}
   createScale: {x: 0.75, y: 0.75, z: 1}
 --- !u!114 &5863545185225197595
@@ -596,7 +596,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 5863545186675447503}
           m_TargetAssemblyTypeName: MenueItem, Assembly-CSharp
-          m_MethodName: 
+          m_MethodName: Click
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
