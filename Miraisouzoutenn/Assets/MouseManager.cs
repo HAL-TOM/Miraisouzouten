@@ -163,12 +163,16 @@ public class MouseManager : MonoBehaviour
                             clickObj.transform.GetComponent<MRobot>().debri.Break();
                             clickObj.DesObj();
 
+
                         }
+
+                        
                         if (clickObj.transform.GetComponent<Rocket>())
                         {
                             clickObj.transform.GetComponent<Rocket>().debri.Break();
                             clickObj.DesObj();
                         }
+                        
                         SetState(MainState.ClickNon);
                     }
 
