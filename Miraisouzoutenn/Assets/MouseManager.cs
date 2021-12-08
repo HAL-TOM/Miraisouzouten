@@ -117,7 +117,7 @@ public class MouseManager : MonoBehaviour
                                             clickObj.transform.position = hit.collider.transform.position + new Vector3(0.0f, Mass.massManager.scale.y / 2.0f, -0.1f); ;
 
                                             //‚±‚±‚ÅƒfƒuƒŠ
-                                            clickObj.GetComponent<Rocket>().debri = mass.obj.GetComponent<Debri>();
+                                            //clickObj.GetComponent<Rocket>().debri = mass.obj.GetComponent<Debri>();
                                             SetState(MainState.OnSetting);
                                             return;
                                         }
@@ -166,13 +166,13 @@ public class MouseManager : MonoBehaviour
 
                         }
 
-                        
+                        /*
                         if (clickObj.transform.GetComponent<Rocket>())
                         {
                             clickObj.transform.GetComponent<Rocket>().debri.Break();
                             clickObj.DesObj();
                         }
-                        
+                        */
                         SetState(MainState.ClickNon);
                     }
 

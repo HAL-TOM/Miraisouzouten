@@ -7728,7 +7728,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1efe10dd82a59b348aa8e3de1f0eb201, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stage_num: 1
   StageBox:
   - {fileID: 1000634590}
   - {fileID: 1274003081}

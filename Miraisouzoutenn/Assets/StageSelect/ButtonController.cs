@@ -11,6 +11,7 @@ public class ButtonController : BaseButtonController
     public PanelChange panel;
     public bool backFlag;
     public bool returnFlag;
+    public static int scoreNum;
 
     void Start()
     {
@@ -129,6 +130,15 @@ public class ButtonController : BaseButtonController
     {
         Debug.Log("Button1 Click");
         sceneName = "Stage1";
+        if (ReleaseStage.stageNum <= 1)
+        {
+            Enter.flag = false;
+        }
+        else
+        {
+            Enter.flag = true;
+        }
+        scoreNum = 0;
         backFlag = false;
     }
 
@@ -136,6 +146,15 @@ public class ButtonController : BaseButtonController
     {
         Debug.Log("Button2 Click");
         sceneName = "Stage2";
+        if (ReleaseStage.stageNum <= 2)
+        {
+            Enter.flag = false;
+        }
+        else
+        {
+            Enter.flag = true;
+        }
+        scoreNum = 1;
         backFlag = false;
 
     }
@@ -145,6 +164,15 @@ public class ButtonController : BaseButtonController
         Debug.Log("Button3 Click");
         sceneName = "Stage3";
         backFlag = false;
+        if (ReleaseStage.stageNum <= 3)
+        {
+            Enter.flag = false;
+        }
+        else
+        {
+            Enter.flag = true;
+        }
+        scoreNum = 2;
 
     }
 
@@ -153,6 +181,15 @@ public class ButtonController : BaseButtonController
         Debug.Log("Button4 Click");
         sceneName = "Stage4";
         backFlag = false;
+        if (ReleaseStage.stageNum <= 4)
+        {
+            Enter.flag = false;
+        }
+        else
+        {
+            Enter.flag = true;
+        }
+        scoreNum = 3;
 
     }
 
@@ -161,6 +198,15 @@ public class ButtonController : BaseButtonController
         Debug.Log("Button5 Click");
         sceneName = "Stage5";
         backFlag = false;
+        if (ReleaseStage.stageNum <= 5)
+        {
+            Enter.flag = false;
+        }
+        else
+        {
+            Enter.flag = true;
+        }
+        scoreNum = 4;
 
     }
 
@@ -169,6 +215,15 @@ public class ButtonController : BaseButtonController
         Debug.Log("Button6 Click");
         sceneName = "Stage6";
         backFlag = false;
+        if (ReleaseStage.stageNum <= 6)
+        {
+            Enter.flag = false;
+        }
+        else
+        {
+            Enter.flag = true;
+        }
+        scoreNum = 5;
 
     }
 
@@ -177,6 +232,15 @@ public class ButtonController : BaseButtonController
         Debug.Log("Button7 Click");
         sceneName = "Stage7";
         backFlag = false;
+        if (ReleaseStage.stageNum <= 7)
+        {
+            Enter.flag = false;
+        }
+        else
+        {
+            Enter.flag = true;
+        }
+        scoreNum = 6;
 
     }
 
@@ -185,6 +249,15 @@ public class ButtonController : BaseButtonController
         Debug.Log("Button8 Click");
         sceneName = "Stage8";
         backFlag = false;
+        if (ReleaseStage.stageNum <= 8)
+        {
+            Enter.flag = false;
+        }
+        else
+        {
+            Enter.flag = true;
+        }
+        scoreNum = 7;
 
     }
 
@@ -193,6 +266,15 @@ public class ButtonController : BaseButtonController
         Debug.Log("Button9 Click");
         sceneName = "Stage9";
         backFlag = false;
+        if (ReleaseStage.stageNum <= 9)
+        {
+            Enter.flag = false;
+        }
+        else
+        {
+            Enter.flag = true;
+        }
+        scoreNum = 8;
 
     }
 
@@ -201,6 +283,15 @@ public class ButtonController : BaseButtonController
         Debug.Log("Button10 Click");
         sceneName = "Stage10";
         backFlag = false;
+        if (ReleaseStage.stageNum <= 10)
+        {
+            Enter.flag = false;
+        }
+        else
+        {
+            Enter.flag = true;
+        }
+        scoreNum = 9;
 
     }
 
