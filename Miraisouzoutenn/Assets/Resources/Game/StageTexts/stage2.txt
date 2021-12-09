@@ -1,6 +1,7 @@
 +ddd+
 d+dd+
-+d+dd
++++dd
+ddddd
 d+E+d
 /
 3
