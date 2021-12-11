@@ -128,8 +128,9 @@ public class ButtonController : BaseButtonController
 
     private void Button1Click()
     {
-        Debug.Log("Button1 Click");
         sceneName = "Stage1";
+
+        //開放されているか
         if (ReleaseStage.stageNum <= 1)
         {
             Enter.flag = false;
@@ -138,14 +139,15 @@ public class ButtonController : BaseButtonController
         {
             Enter.flag = true;
         }
-        scoreNum = 0;
+
         backFlag = false;
     }
 
     private void Button2Click()
     {
-        Debug.Log("Button2 Click");
         sceneName = "Stage2";
+
+        //開放されているか
         if (ReleaseStage.stageNum <= 2)
         {
             Enter.flag = false;
@@ -154,16 +156,16 @@ public class ButtonController : BaseButtonController
         {
             Enter.flag = true;
         }
-        scoreNum = 1;
+
         backFlag = false;
 
     }
 
     private void Button3Click()
     {
-        Debug.Log("Button3 Click");
         sceneName = "Stage3";
-        backFlag = false;
+
+        //開放されているか
         if (ReleaseStage.stageNum <= 3)
         {
             Enter.flag = false;
@@ -172,15 +174,16 @@ public class ButtonController : BaseButtonController
         {
             Enter.flag = true;
         }
-        scoreNum = 2;
+
+        backFlag = false;
 
     }
 
     private void Button4Click()
     {
-        Debug.Log("Button4 Click");
         sceneName = "Stage4";
-        backFlag = false;
+
+        //開放されているか
         if (ReleaseStage.stageNum <= 4)
         {
             Enter.flag = false;
@@ -189,15 +192,16 @@ public class ButtonController : BaseButtonController
         {
             Enter.flag = true;
         }
-        scoreNum = 3;
+
+        backFlag = false;
 
     }
 
     private void Button5Click()
     {
-        Debug.Log("Button5 Click");
         sceneName = "Stage5";
-        backFlag = false;
+
+        //開放されているか
         if (ReleaseStage.stageNum <= 5)
         {
             Enter.flag = false;
@@ -206,15 +210,16 @@ public class ButtonController : BaseButtonController
         {
             Enter.flag = true;
         }
-        scoreNum = 4;
+
+        backFlag = false;
 
     }
 
     private void Button6Click()
     {
-        Debug.Log("Button6 Click");
         sceneName = "Stage6";
-        backFlag = false;
+
+        //開放されているか
         if (ReleaseStage.stageNum <= 6)
         {
             Enter.flag = false;
@@ -223,15 +228,16 @@ public class ButtonController : BaseButtonController
         {
             Enter.flag = true;
         }
-        scoreNum = 5;
+
+        backFlag = false;
 
     }
 
     private void Button7Click()
     {
-        Debug.Log("Button7 Click");
         sceneName = "Stage7";
-        backFlag = false;
+
+        //開放されているか
         if (ReleaseStage.stageNum <= 7)
         {
             Enter.flag = false;
@@ -240,15 +246,16 @@ public class ButtonController : BaseButtonController
         {
             Enter.flag = true;
         }
-        scoreNum = 6;
+
+        backFlag = false;
 
     }
 
     private void Button8Click()
     {
-        Debug.Log("Button8 Click");
         sceneName = "Stage8";
-        backFlag = false;
+
+        //開放されているか
         if (ReleaseStage.stageNum <= 8)
         {
             Enter.flag = false;
@@ -257,15 +264,16 @@ public class ButtonController : BaseButtonController
         {
             Enter.flag = true;
         }
-        scoreNum = 7;
+
+        backFlag = false;
 
     }
 
     private void Button9Click()
     {
-        Debug.Log("Button9 Click");
         sceneName = "Stage9";
-        backFlag = false;
+
+        //開放されているか
         if (ReleaseStage.stageNum <= 9)
         {
             Enter.flag = false;
@@ -274,15 +282,16 @@ public class ButtonController : BaseButtonController
         {
             Enter.flag = true;
         }
-        scoreNum = 8;
+
+        backFlag = false;
 
     }
 
     private void Button10Click()
     {
-        Debug.Log("Button10 Click");
         sceneName = "Stage10";
-        backFlag = false;
+
+        //開放されているか
         if (ReleaseStage.stageNum <= 10)
         {
             Enter.flag = false;
@@ -291,76 +300,178 @@ public class ButtonController : BaseButtonController
         {
             Enter.flag = true;
         }
-        scoreNum = 9;
+
+        backFlag = false;
 
     }
 
     private void Button11Click()
     {
-        Debug.Log("Button11 Click");
+        sceneName = "Stage11";
+
+        //開放されているか
+        if (ReleaseStage.stageNum <= 11)
+        {
+            Enter.flag = false;
+        }
+        else
+        {
+            Enter.flag = true;
+        }
         backFlag = true;
 
     }
 
     private void Button12Click()
     {
-        Debug.Log("Button12 Click");
+        sceneName = "Stage12";
+
+        //開放されているか
+        if (ReleaseStage.stageNum <= 12)
+        {
+            Enter.flag = false;
+        }
+        else
+        {
+            Enter.flag = true;
+        }
         backFlag = true;
 
     }
 
     private void Button13Click()
     {
-        Debug.Log("Button13 Click");
+        sceneName = "Stage13";
+
+        //開放されているか
+        if (ReleaseStage.stageNum <= 13)
+        {
+            Enter.flag = false;
+        }
+        else
+        {
+            Enter.flag = true;
+        }
         backFlag = true;
 
     }
 
     private void Button14Click()
     {
-        Debug.Log("Button14 Click");
+        sceneName = "Stage14";
+
+        //開放されているか
+        if (ReleaseStage.stageNum <= 14)
+        {
+            Enter.flag = false;
+        }
+        else
+        {
+            Enter.flag = true;
+        }
         backFlag = true;
 
     }
 
     private void Button15Click()
     {
-        Debug.Log("Button15 Click");
+        sceneName = "Stage15";
+
+        //開放されているか
+        if (ReleaseStage.stageNum <= 15)
+        {
+            Enter.flag = false;
+        }
+        else
+        {
+            Enter.flag = true;
+        }
         backFlag = true;
 
     }
 
     private void Button16Click()
     {
-        Debug.Log("Button16 Click");
+        sceneName = "Stage16";
+
+        //開放されているか
+        if (ReleaseStage.stageNum <= 16)
+        {
+            Enter.flag = false;
+        }
+        else
+        {
+            Enter.flag = true;
+        }
         backFlag = true;
 
     }
 
     private void Button17Click()
     {
-        Debug.Log("Button17 Click");
+        sceneName = "Stage17";
+
+        //開放されているか
+        if (ReleaseStage.stageNum <= 17)
+        {
+            Enter.flag = false;
+        }
+        else
+        {
+            Enter.flag = true;
+        }
         backFlag = true;
 
     }
 
     private void Button18Click()
     {
-        Debug.Log("Button18 Click");
+        sceneName = "Stage18";
+
+        //開放されているか
+        if (ReleaseStage.stageNum <= 18)
+        {
+            Enter.flag = false;
+        }
+        else
+        {
+            Enter.flag = true;
+        }
         backFlag = true;
 
     }
 
     private void Button19Click()
     {
-        Debug.Log("Button19 Click");
+        sceneName = "Stage19";
+
+        //開放されているか
+        if (ReleaseStage.stageNum <= 19)
+        {
+            Enter.flag = false;
+        }
+        else
+        {
+            Enter.flag = true;
+        }
         backFlag = true;
 
     }
 
     private void Button20Click()
     {
-        Debug.Log("Button20 Click");
+        sceneName = "Stage20";
+
+        //開放されているか
+        if (ReleaseStage.stageNum <= 20)
+        {
+            Enter.flag = false;
+        }
+        else
+        {
+            Enter.flag = true;
+        }
+
         backFlag = true;
 
     }
@@ -384,6 +495,7 @@ public class ButtonController : BaseButtonController
 
     private void BackClick()
     {
+        //戻る画面
         if (!returnFlag)
         {
             panel.MainView();

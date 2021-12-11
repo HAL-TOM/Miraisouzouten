@@ -6,7 +6,9 @@ using UnityEngine.UI;
 public class ReleaseStage : MonoBehaviour
 {
     public static int stageNum = 1;           //解放するステージ数の変数
-    public GameObject[] StageBox;             //ステージ選択ボタン格納用
+    public GameObject[] StageBox;             //ステージ選択ボタン表示用
+    public GameObject[] StageBoxN;            //ステージロックボタン非表示用
+    public GameObject[] UnlockBoxN;           //ロックアニメーション非表示
 
     // Start is called before the first frame update
     void Start()
@@ -24,7 +26,14 @@ public class ReleaseStage : MonoBehaviour
             if(stageNum >= i + 2)                       //解放されているステージ数表示
             {
                 StageBox[i].SetActive(true);            //解放ステージ表示
+                StageBoxN[i].SetActive(false);          //非表示
             }
+
+            if (stageNum >= i + 3)                       //解放されているステージ数表示
+            {
+                UnlockBoxN[i].SetActive(false);
+            }
+
         }
 
         //仮リセット

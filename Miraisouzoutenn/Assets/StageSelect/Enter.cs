@@ -9,8 +9,6 @@ public class Enter : MonoBehaviour
 {
     public static bool flag;    //クリア済み判定
     public int scoreLev;        //クリア評定
-    public int scoreAllAdd = 0; //クリアランクを各桁に保存
-    public int[] scoreNumber;
 
     // Start is called before the first frame update
     void Start()
@@ -24,24 +22,6 @@ public class Enter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.Alpha1))
-        {
-            scoreLev = 1;
-            Debug.Log(scoreLev);
-
-        }
-        if (Input.GetKey(KeyCode.Alpha2))
-        {
-            scoreLev = 2;
-            Debug.Log(scoreLev);
-
-        }
-        if (Input.GetKey(KeyCode.Alpha3))
-        {
-            scoreLev = 3;
-            Debug.Log(scoreLev);
-
-        }
 
         //仮クリア時
         if (Input.GetKey(KeyCode.Return))
@@ -52,7 +32,6 @@ public class Enter : MonoBehaviour
                 ReleaseStage.stageNum += 1;
                 flag = true;
             }
-
             SaveStageData data = new SaveStageData();
             data.m_score = ReleaseStage.stageNum;
             SaveManager.SaveStage("SaveReleaseStage.text", ref data);
