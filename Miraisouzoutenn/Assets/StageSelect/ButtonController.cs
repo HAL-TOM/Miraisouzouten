@@ -126,6 +126,11 @@ public class ButtonController : BaseButtonController
 
     }
 
+    public static int GetScoreNum()
+    {
+        return scoreNum;
+    }
+
     private void Button1Click()
     {
         sceneName = "Stage1";
@@ -141,6 +146,9 @@ public class ButtonController : BaseButtonController
         }
 
         backFlag = false;
+
+        scoreNum = 0;
+
     }
 
     private void Button2Click()
@@ -159,6 +167,7 @@ public class ButtonController : BaseButtonController
 
         backFlag = false;
 
+        scoreNum = 1;
     }
 
     private void Button3Click()
@@ -176,6 +185,8 @@ public class ButtonController : BaseButtonController
         }
 
         backFlag = false;
+
+        scoreNum = 2;
 
     }
 
@@ -195,6 +206,7 @@ public class ButtonController : BaseButtonController
 
         backFlag = false;
 
+        scoreNum = 3;
     }
 
     private void Button5Click()
@@ -213,6 +225,7 @@ public class ButtonController : BaseButtonController
 
         backFlag = false;
 
+        scoreNum = 4;
     }
 
     private void Button6Click()
@@ -231,6 +244,7 @@ public class ButtonController : BaseButtonController
 
         backFlag = false;
 
+        scoreNum = 5;
     }
 
     private void Button7Click()
@@ -249,6 +263,7 @@ public class ButtonController : BaseButtonController
 
         backFlag = false;
 
+        scoreNum = 6;
     }
 
     private void Button8Click()
@@ -267,6 +282,7 @@ public class ButtonController : BaseButtonController
 
         backFlag = false;
 
+        scoreNum = 7;
     }
 
     private void Button9Click()
@@ -285,6 +301,7 @@ public class ButtonController : BaseButtonController
 
         backFlag = false;
 
+        scoreNum = 8;
     }
 
     private void Button10Click()
@@ -303,6 +320,7 @@ public class ButtonController : BaseButtonController
 
         backFlag = false;
 
+        scoreNum = 9;
     }
 
     private void Button11Click()
@@ -320,6 +338,7 @@ public class ButtonController : BaseButtonController
         }
         backFlag = true;
 
+        scoreNum = 10;
     }
 
     private void Button12Click()
@@ -337,6 +356,7 @@ public class ButtonController : BaseButtonController
         }
         backFlag = true;
 
+        scoreNum = 11;
     }
 
     private void Button13Click()
@@ -354,6 +374,7 @@ public class ButtonController : BaseButtonController
         }
         backFlag = true;
 
+        scoreNum = 12;
     }
 
     private void Button14Click()
@@ -371,6 +392,7 @@ public class ButtonController : BaseButtonController
         }
         backFlag = true;
 
+        scoreNum = 13;
     }
 
     private void Button15Click()
@@ -388,6 +410,7 @@ public class ButtonController : BaseButtonController
         }
         backFlag = true;
 
+        scoreNum = 14;
     }
 
     private void Button16Click()
@@ -405,6 +428,7 @@ public class ButtonController : BaseButtonController
         }
         backFlag = true;
 
+        scoreNum = 15;
     }
 
     private void Button17Click()
@@ -422,6 +446,7 @@ public class ButtonController : BaseButtonController
         }
         backFlag = true;
 
+        scoreNum = 16;
     }
 
     private void Button18Click()
@@ -439,6 +464,7 @@ public class ButtonController : BaseButtonController
         }
         backFlag = true;
 
+        scoreNum = 17;
     }
 
     private void Button19Click()
@@ -456,6 +482,7 @@ public class ButtonController : BaseButtonController
         }
         backFlag = true;
 
+        scoreNum = 18;
     }
 
     private void Button20Click()
@@ -474,6 +501,7 @@ public class ButtonController : BaseButtonController
 
         backFlag = true;
 
+        scoreNum = 19;
     }
 
     private void YesClick()

@@ -6,9 +6,8 @@ using UnityEngine;
 [RequireComponent(typeof(Animator))]
 public class UnlockAnimation : MonoBehaviour
 {
-    public static int Count;
     private Animator anim;
-    public static bool isUnlocked;            //アニメーションを一回だけ実行するための変数
+    private bool isUnlocked;            //アニメーションを一回だけ実行するための変数
     float waitTime;
     float passedTime;
 
